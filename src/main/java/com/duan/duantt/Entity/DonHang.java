@@ -1,9 +1,11 @@
 package com.duan.duantt.Entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -43,6 +45,11 @@ public class DonHang {
     @ManyToOne
     @JoinColumn(name = "IdPhuongThucThanhToan")
     private PhuongThucThanhToan phuongThucThanhToan;
+
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "donHang", cascade = CascadeType.ALL)
+    private List<ChiTietDonHang> chiTietDonHangs;
 
     // Getters and setters
 }
