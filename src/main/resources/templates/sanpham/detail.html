@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{/layout/index :: dynamic(~{::main})}"
+>
+<body>
+<main class="row">
+    <div class="container">
+        <div class="row">
+            <!-- Product Information -->
+            <div class="col-md-6">
+                <div class="card">
+                    <img class="card-img-top" th:src="@{|/assets/images/${item.hinhAnh}.jpg|}" alt="Product Image">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${item.ten}">Product Name</h5>
+                        <p class="card-text">Price: <span th:text="${item.giaBan}">0.00</span></p>
+                        <p class="card-text">NSX: <span th:text="${item.nsx}">0.00</span></p>
+
+<!--                        <p class="card-text">Create Date: <span th:text="${#dates.format(item.createDate, 'dd/MM/yyyy')}">01/01/2023</span></p>-->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Product Information -->
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Additional Information</h3>
+                    </div>
+                    <div class="panel-body">
+                        <!-- Combobox for MauSac -->
+                        <div class="form-group">
+                            <label for="mauSac">Mau Sac:</label>
+                            <select class="form-control" id="mauSac" name="mauSac">
+                                <option th:each="mauSac : ${listOfMauSac}"
+                                        th:value="${mauSac.id}"
+                                        th:text="${mauSac.ten}">MauSac Name
+                                </option>
+                            </select>
+                        </div>
+
+                        <!-- Combobox for KichThuoc -->
+                        <div class="form-group">
+                            <label for="kichThuoc">Kich Thuoc:</label>
+                            <select class="form-control" id="kichThuoc" name="kichThuoc">
+                                <option th:each="kichThuoc : ${listOfKichThuoc}"
+                                        th:value="${kichThuoc.id}"
+                                        th:text="${kichThuoc.ten}">KichThuoc Name
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Product Information -->
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Additional Information</h3>
+                        <p class="card-text">MoTa: <span th:text="${item.moTa}">0.00</span></p>
+                    </div>
+                    <div class="panel-body">
+                        <!-- Add more product information here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+</body>
+
+</html>
