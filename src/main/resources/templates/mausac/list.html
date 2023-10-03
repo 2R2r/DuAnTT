@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MauSac List</title>
+</head>
+<body>
+
+<h2>MauSac List</h2>
+
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>Ten</th>
+        <th>TrangThai</th>
+        <th>Action</th>
+    </tr>
+    <tr th:each="mauSac : ${mauSacs}">
+        <td th:text="${mauSac.id}"></td>
+        <td th:text="${mauSac.ten}"></td>
+        <td th:text="${mauSac.trangThai}"></td>
+        <td>
+            <a th:href="@{/mauSac/add(${mauSac.id})}">Add</a>
+            |
+            <a th:href="@{/mausac/delete(mauSacId=${mauSac.id})}" onclick="return confirm('Are you sure?')">Delete</a>
+        </td>
+    </tr>
+</table>
+
+<br>
+<a href="/mausac/showFormForAdd">Add MauSac</a>
+
+</body>
+</html>

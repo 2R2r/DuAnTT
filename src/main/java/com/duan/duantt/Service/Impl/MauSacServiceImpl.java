@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class MauSacServiceImpl implements MauSacService {
@@ -20,5 +21,20 @@ public class MauSacServiceImpl implements MauSacService {
 
     public List<MauSac> getAll() {
         return repository.findAll();
+    }
+
+    @Override
+    public void add(MauSac mauSac) {
+        repository.save(mauSac);
+    }
+
+    @Override
+    public MauSac detail(UUID id) {
+        return repository.getMauSacById(id);
+    }
+
+    @Override
+    public void delete(UUID id) {
+        repository.deleteById(id);
     }
 }
