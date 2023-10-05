@@ -46,3 +46,4 @@ public class ChiTietSanPham {
     @JoinColumn(name = "IdMauSac")
     private MauSac mauSac;
 }
+
