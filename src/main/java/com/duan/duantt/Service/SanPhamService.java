@@ -1,6 +1,7 @@
 package com.duan.duantt.Service;
 
 import com.duan.duantt.Entity.SanPham;
+import com.duan.duantt.ViewModel.ViewSanPham;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,11 +9,11 @@ import java.util.UUID;
 
 public interface SanPhamService {
 
-    List<SanPham> getAll();
+    public List<ViewSanPham> getAllViewSanPham();
 
 
-    Optional<SanPham> findById(UUID id);
+    Optional<ViewSanPham> findById(UUID id);
 
 
-    List<SanPham> findByCategoryId(UUID id);
+    List<ViewSanPham> findByTheLoaiId(UUID id);
 }

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{/layout/index :: dynamic(~{::main})}"
+>
+<body>
+
+<main class="container">
+    <h1>Shopping Cart</h1>
+
+    <div class="row" th:fragment="shopping-cart">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Tên</th>
+                    <th>Ảnh</th>
+                    <th>Giá</th>
+                    <th>Số lượng</th>
+                    <th>Tổng</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in cartItems">
+                    <td> {{item.chiTietSanPham.sanPham.ten}}</td>
+                    <td>
+                        <img ng-src="/assets/images/{{item.chiTietSanPham.hinhAnh}}.jpg" alt="Product Image" width="100" />
+                    </td>
+                    <td> {{item.giaBan | number : 2}} VND</td>
+                    <td>
+                        <input ng-change="cart.update(item.id, item.soLuong)" ng-model="item.soLuong" type="number" min="1" />
+                    </td>
+
+                    <td> {{item.soLuong*item.chiTietSanPham.giaBan | number : 3}} VND</td>
+                    <td>
+                        <button class="btn btn-danger" ng-click="cart.remove(item.id)">Remove</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <p> Tổng tiền: {{totalPrice | number : 3}} VND</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <button class="btn btn-primary" ng-click="cart.clear()">Clear Cart</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <a th:href="@{/order/checkout}">
+                <i>Check out</i>
+            </a>
+        </div>
+    </div>
+
+</main>
+
+</body>
+</html>
