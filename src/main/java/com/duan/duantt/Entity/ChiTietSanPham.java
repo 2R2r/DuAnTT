@@ -1,22 +1,22 @@
 package com.duan.duantt.Entity;
+
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.UUID;
 
-
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "ChiTietSanPham")
 public class ChiTietSanPham {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Id")
+    @Column(name = "id")
     private UUID id;
 
     @Column(name = "GiaNhap")
@@ -26,39 +26,23 @@ public class ChiTietSanPham {
     private BigDecimal giaBan;
 
     @Column(name = "SoLuong")
-    private Integer soLuong;
+    private Integer soluong;
 
-    @Column(name = "HinhAnh")
+    @Column(name = "Hinhanh")
     private String hinhAnh;
+
+    @Column(name = "TrangThai")
+    private Float trangThai;
 
     @ManyToOne
     @JoinColumn(name = "IdSanPham")
     private SanPham sanPham;
 
     @ManyToOne
-    @JoinColumn(name = "IdMauSac")
-    private MauSac mauSac;
-
-    @ManyToOne
     @JoinColumn(name = "IdKichThuoc")
     private KichThuoc kichThuoc;
 
-
-    @Column(name = "TrangThai")
-    private Boolean trangThai;
-
-    @Override
-    public String toString() {
-        return "ChiTietSanPham{" +
-                "id=" + id +
-                ", giaNhap=" + giaNhap +
-                ", giaBan=" + giaBan +
-                ", soLuong=" + soLuong +
-                ", hinhAnh='" + hinhAnh + '\'' +
-                ", sanPham=" + sanPham +
-                ", mauSac=" + mauSac +
-                ", kichThuoc=" + kichThuoc +
-                ", trangThai=" + trangThai +
-                '}';
-    }
+    @ManyToOne
+    @JoinColumn(name = "IdMauSac")
+    private MauSac mauSac;
 }
