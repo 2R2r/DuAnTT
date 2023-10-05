@@ -1,12 +1,14 @@
 package com.duan.duantt.Entity;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
-import java.util.Date;
 import java.util.UUID;
 
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "ChiTietGioHang")
 public class ChiTietGioHang {
@@ -21,8 +23,8 @@ public class ChiTietGioHang {
     private GioHang gioHang;
 
     @ManyToOne
-    @JoinColumn(name = "IdSanPham")
-    private SanPham sanPham;
+    @JoinColumn(name = "IdChiTietSanPham")
+    private ChiTietSanPham chiTietSanPham;
 
     @Column(name = "SoLuong")
     private Integer soLuong;

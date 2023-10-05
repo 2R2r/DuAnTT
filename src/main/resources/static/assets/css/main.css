@@ -1,0 +1,89 @@
+/* Your existing CSS code goes here */
+.product-option-items a {
+    display: inline-block;
+    width: 30px; /* Chiều rộng của mỗi mục */
+    height: 30px; /* Chiều cao của mỗi mục */
+    margin-right: 10px; /* Khoảng cách giữa các mục */
+    border: 1px solid #ccc; /* Viền xung quanh mỗi mục */
+    border-radius: 5px; /* Đường viền cong */
+}
+
+.product-option-items a.active {
+    border-color: #000; /* Màu viền cho mục đã chọn */
+}
+
+.product-option-items img {
+    display: block;
+    max-width: 100%; /* Đảm bảo hình ảnh không vượt quá kích thước của mục */
+}
+
+.selected {
+    border: 2px solid #000; /* Màu và kích thước border khi được chọn */
+    font-weight: bold; /* Chữ đậm khi được chọn */
+}
+.item {
+    cursor: pointer; /* Biến con trỏ thành hình bàn tay khi di chuột qua */
+}
+
+.selected-color {
+    border: 2px solid #000; /* Màu và kích thước border khi được chọn */
+    font-weight: bold; /* Chữ đậm khi được chọn */
+}
+
+.selected-size {
+    border: 2px solid #000; /* Màu và kích thước border khi được chọn */
+    font-weight: bold; /* Chữ đậm khi được chọn */
+}
+
+.color-label, .size-label {
+    cursor: pointer;
+    display: inline-block; /* Hiển thị theo hàng ngang */
+    margin: 5px; /* Khoảng cách giữa các lựa chọn */
+}
+.list-unstyled .item {
+    display: inline-block;
+    margin-right: 10px; /* Adjust the margin as needed */
+}
+
+.list-unstyled ul {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: relative;
+}
+
+.list-unstyled ul li {
+    min-width: 45px;
+    text-align: center;
+    box-shadow: 0 0 0 1px #d1d7da;
+    padding: 2px;
+    margin: 4px 8px 4px 0;
+}
+
+.list-unstyled ul li span {
+    padding: 0 5px;
+    font-size: 16px;
+}
+
+.selected-color {
+    border: 2px solid #000; /* Màu và kích thước border khi được chọn */
+    font-weight: bold; /* Chữ đậm khi được chọn */
+}
+
+.selected-size {
+    border: 2px solid #000; /* Màu và kích thước border khi được chọn */
+    font-weight: bold; /* Chữ đậm khi được chọn */
+}
+
+.item {
+    cursor: pointer; /* Biến con trỏ thành hình bàn tay khi di chuột qua */
+}
+
+.color-label, .size-label {
+    cursor: pointer;
+    display: inline-block; /* Hiển thị theo hàng ngang */
+    margin: 5px; /* Khoảng cách giữa các lựa chọn */
+}
+

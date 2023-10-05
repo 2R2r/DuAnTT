@@ -16,8 +16,8 @@ public class TheLoai {
     @Column(name = "Id")
     private UUID id;
 
-    @Column(name = "Name")
-    private String name;
+    @Column(name = "Ten")
+    private String ten;
 
     @Column(name = "TrangThai")
     private Boolean trangThai;

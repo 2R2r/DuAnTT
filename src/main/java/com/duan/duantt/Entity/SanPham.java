@@ -1,13 +1,16 @@
 package com.duan.duantt.Entity;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.UUID;
 
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "SanPham")
 public class SanPham {
@@ -20,39 +23,29 @@ public class SanPham {
     @Column(name = "Ten")
     private String ten;
 
-    @Column(name = "GiaNhap")
-    private BigDecimal giaNhap;
-
-    @Column(name = "GiaBan")
-    private BigDecimal giaBan;
-
-    @Column(name = "SoLuong")
-    private Integer soLuong;
-
-    @Column(name = "HinhAnh")
-    private String hinhAnh;
-
     @ManyToOne
     @JoinColumn(name = "IdNSX")
     private NSX nsx;
 
-    @Column(name = "TrangThai")
-    private Boolean trangThai;
-
     @Column(name = "MoTa")
     private String moTa;
+
+    @Column(name = "TrangThai")
+    private Boolean trangThai;
 
     @ManyToOne
     @JoinColumn(name = "IdTheLoai")
     private TheLoai theLoai;
 
-    @ManyToOne
-    @JoinColumn(name = "IdMauSac")
-    private MauSac mauSac;
-
-    @ManyToOne
-    @JoinColumn(name = "IdKichCo")
-    private KichThuoc kichThuoc;
-
-    // Getters and setters
+    @Override
+    public String toString() {
+        return "SanPham{" +
+                "id=" + id +
+                ", ten='" + ten + '\'' +
+                ", nsx=" + nsx +
+                ", moTa='" + moTa + '\'' +
+                ", trangThai=" + trangThai +
+                ", theLoai=" + theLoai +
+                '}';
+    }
 }
