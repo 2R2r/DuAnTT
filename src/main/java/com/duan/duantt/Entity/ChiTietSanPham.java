@@ -45,5 +45,6 @@ public class ChiTietSanPham {
     @ManyToOne
     @JoinColumn(name = "IdMauSac")
     private MauSac mauSac;
-}
+
+    }
 
