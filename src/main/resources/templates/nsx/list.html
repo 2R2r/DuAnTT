@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MauSac List</title>
+</head>
+<body>
+<div class="modal-content">
+    <form th:action="@{/nsx/add}" th:object="${nsx1}" method="post" >
+        <div class="modal-header">
+            <h4 class="modal-title">Thêm NSX</h4>
+        </div>
+        <div class="modal-body">
+            <div class="mb-3">
+                <label class="from-label" style="color: black">Tên</label>
+                <input type="text" class="form-control" th:field="*{ten}"/>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" th:field="*{trangThai}" th:value="true" checked/>
+                <label class="form-check-label" >Hoạt động</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio"  th:field="*{trangThai}" th:value="false" />
+                <label class="form-check-label" >Không hoạt động</label>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit">Add Color</button>
+        </div>
+    </form>
+</div>
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>Ten</th>
+        <th>TrangThai</th>
+        <th>Action</th>
+    </tr>
+    <tr th:each="nsx : ${nsxs}">
+        <td th:text="${nsx.id}"></td>
+        <td th:text="${nsx.ten}"></td>
+        <td class="align-middle" th:if="${nsx.trangThai == true}">Hoạt động</td>
+        <td class="align-middle" th:if="${nsx.trangThai == false}">Không hoạt
+        <td>
+            <a th:href="@{view-update/{id}(id=${nsx.id})}">Edidt</a>
+            |
+            <a th:href="@{delete/{id}(id=${nsx.id})}" onclick="return confirm('Are you sure?')">Delete</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

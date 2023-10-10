@@ -1,7 +1,6 @@
 package com.duan.duantt.Service.Impl;
 
 import com.duan.duantt.Entity.SanPham;
-import com.duan.duantt.Repository.DonHangRepository;
 import com.duan.duantt.Repository.SanPhamRepository;
 import com.duan.duantt.Service.SanPhamService;
 import org.springframework.beans.factory.annotation.Autowired;

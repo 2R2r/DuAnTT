@@ -11,5 +11,11 @@ public interface TheLoaiService {
 
      List<TheLoai> getAll();
 
+     void add(TheLoai theLoai);
+
+     TheLoai detail(UUID id);
+
+     void delete(UUID id);
+
 
 }
