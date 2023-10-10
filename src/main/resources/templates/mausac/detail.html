@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MauSac List</title>
+</head>
+<body>
+<div class="row">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-12">
+                <form th:action="@{/mau-sac/update(id=${ms1.id})}" th:object="${ms1}" method="post">
+                    <div class="mb-3">
+                        <label class="form-label">Tên</label>
+                        <input type="text" class="form-control" th:field="*{ten}" />
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" th:field="*{trangThai}" th:value="1" checked/>
+                        <label class="form-check-label" >Hoạt động</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio"  th:field="*{trangThai}" th:value="0" />
+                        <label class="form-check-label" >Không hoạt động</label>
+                    </div>
+                    <button class="btn btn-success waves-effect waves-light text-center"
+                            style="color: white; background-color: #2b3d51" type="submit">
+                        Xác Nhận
+                    </button>
+                </form>
+            </div>
+        </div>
+
+
+    </div><!-- end col -->
+</div></body>
+</html>
