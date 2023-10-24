@@ -8,24 +8,70 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <link rel="stylesheet" href="/assets/css/main.css">
+    <title>Spike shoes Website Template | Prosucts :: w3layouts</title>
+    <link href="/assets/css/style.css" rel='stylesheet' type='text/css' />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script
+            type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    </script>
+    <!----webfonts---->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <!----//webfonts---->
+    <!----start-alert-scroller---->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery.easy-ticker.js"></script>
+<!--    <script type="text/javascript">-->
+<!--        $(document).ready(function () {-->
+<!--            $('#demo').hide();-->
+<!--            $('.vticker').easyTicker();-->
+<!--        });-->
+<!--    </script>-->
+    <!----start-alert-scroller---->
+    <!-- start menu -->
+    <link href="/assets/css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript" src="/assets/js/megamenu.js"></script>
+    <script>$(document).ready(function () { $(".megamenu").megamenu(); });</script>
+    <script src="/assets/js/menu_jquery.js"></script>
+    <!-- //End menu -->
+    <!---slider---->
+    <link rel="stylesheet" href="/assets/css/slippry.css">
+    <script src="/assets/js/jquery-ui.js" type="text/javascript"></script>
+    <script src="/assets/js/scripts-f0e4e0c2.js" type="text/javascript"></script>
+    <script>
+        jQuery('#jquery-demo').slippry({
+            // general elements & wrapper
+            slippryWrapper: '<div class="sy-box jquery-demo" />', // wrapper to wrap everything, including pager
+            // options
+            adaptiveHeight: false, // height of the sliders adapts to current slide
+            useCSS: false, // true, false -> fallback to js if no browser support
+            autoHover: false,
+            transition: 'fade'
+        });
+    </script>
+    <!---move-top-top---->
+    <script type="text/javascript" src="/assets/js/move-top.js"></script>
+    <script type="text/javascript" src="/assets/js/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1200);
+            });
+        });
+    </script>
+    <!---//move-top-top---->
 </head>
 <body>
 
-<div class="container" ng-app="shopping-cart-app" ng-controller="shopping-cart-ctrl">
-    <header class="row"></header>
-    <nav class="row">
-        <div th:replace="/layout/_menu.html"></div>
-    </nav>
-    <div class="row">
-        <article class="col-sm-9">
-            <div th:replace="${main}"></div>
-        </article>
+<div  ng-app="shopping-cart-app" ng-controller="shopping-cart-ctrl">
 
-        <aside class="col-sm-3">
-            <div th:replace="/layout/_cart-info.html"></div>
-            <div th:replace="/layout/_category.html"></div>
-        </aside>
-    </div>
+        <div th:replace="/layout/_menu.html"></div>
+
+            <div th:replace="${main}"></div>
+
+        <div th:replace="/layout/_footer.html"></div>
+
+
 </div>
 
 <script src="/assets/js/shopping-cart-app.js"></script>

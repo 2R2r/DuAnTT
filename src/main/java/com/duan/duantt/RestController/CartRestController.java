@@ -29,6 +29,7 @@ public class CartRestController {
     @Autowired
     private KichThuocService kichThuocService;
 
+
     @Autowired
     private MauSacService mauSacService;
 
@@ -151,13 +152,13 @@ public class CartRestController {
 
     @Transactional
     @PostMapping("/cart/remove")
-    public String remove(
-            @RequestBody JsonNode orderData, Model model) {
+    public void remove(
+            @RequestBody JsonNode orderData) {
 
         String productIdString = orderData.get("productId").asText(); // Lấy giá trị UUID dưới dạng String
         UUID productId = UUID.fromString(productIdString); // Chuyển String sang UUID
 
-        if (productId != null){
+        if (productId != null) {
             Optional<ChiTietGioHang> chiTietGioHang = chiTietGioHangService.findById(productId);
 
             if (chiTietGioHang.isPresent()) {
@@ -173,10 +174,12 @@ public class CartRestController {
             }
         }
 
-        return "cart/viewCart";
+
     }
 
 
+
+    @Transactional
     @PostMapping("/cart/clear")
     public void clearCart() {
         UUID uuid = UUID.fromString("1127166f-2172-44ad-9606-8314a9919fd9");
@@ -203,5 +206,7 @@ public class CartRestController {
         }
 
     }
+
+
 
 }

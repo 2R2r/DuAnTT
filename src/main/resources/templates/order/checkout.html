@@ -1,0 +1,90 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{/layout/index :: dynamic(~{::main})}"
+>
+<body>
+
+<main class="container">
+    <div class="row" th:fragment="shopping-cart">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Tên</th>
+                    <th>Ảnh</th>
+                    <th>Giá</th>
+                    <th>Số lượng</th>
+                    <th>Tổng</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in cartItems">
+                    <td> {{item.chiTietSanPham.sanPham.ten}}</td>
+                    <td>
+                        <img ng-src="/assets/images/{{item.chiTietSanPham.hinhAnh}}.jpg" alt="Product Image" width="100" />
+                    </td>
+                    <td> {{item.giaBan | number : 2}} VND</td>
+                    <td>
+                        <input ng-change="cart.update(item.id, item.soLuong)" ng-model="item.soLuong" type="number" min="1" />
+                    </td>
+
+                    <td> {{item.soLuong*item.chiTietSanPham.giaBan | number : 3}} VND</td>
+                    <td>
+                        <button class="btn btn-danger" ng-click="cart.remove(item.id)">Remove</button>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <p> Tổng tiền: {{totalPrice | number : 3}} VND</p>
+        </div>
+    </div>
+
+        <div class="row">
+            <div class="panel panel-primary">
+                <div class="panel-heading">ORDER PURCHASING</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <div>Purchaser:</div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-12">
+                            <div>Địa chỉ:</div>
+                            <textarea  ng-model="donHang.diaChi" class="form-control"></textarea>
+                        </div>
+
+                        <div class="form-group col-sm-12">
+                            <div>SDT:</div>
+                            <textarea  ng-model="donHang.sdt" class="form-control"></textarea>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input ng-model="kmMa" type="text" placeholder="Nhập mã khuyến mãi">
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-success" ng-click="cart.addKM()">Áp dụng</button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="panel-footer text-right">
+                    <button ng-click="donHang.purchase()" class="btn btn-success">Purchase</button>
+                </div>
+            </div>
+        </div>
+
+     </div>
+</main>
+
+</body>
+</html>

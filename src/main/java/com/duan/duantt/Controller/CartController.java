@@ -76,7 +76,6 @@ public class CartController {
         return "error"; // Handle case when product is not found
     }
 
-    // Handling selected data from color and size options
     @PostMapping("/product/detail")
     @ResponseBody
     public ResponseEntity<?> handleSelectedData(

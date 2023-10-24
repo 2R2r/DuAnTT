@@ -39,17 +39,30 @@ public class DonHangServiceImpl implements DonHangService {
 
 
     public DonHang create(JsonNode orderData) {
+        if (orderData == null) {
+            throw new IllegalArgumentException("orderData cannot be null");
+        }
+
         ObjectMapper mapper = new ObjectMapper();
-
-        DonHang order = mapper.convertValue(orderData,DonHang.class);
+        DonHang order = mapper.convertValue(orderData, DonHang.class);
         DonHang savedOrder = repository.save(order);
-        TypeReference<List<ChiTietDonHang>> type = new TypeReference<>() {
-        };
-        List<ChiTietDonHang> details = mapper.convertValue(orderData.get("orderDetails"),type)
-                .stream().peek(d -> d.setDonHang(savedOrder)).collect(Collectors.toList());
 
-        System.out.println(details);
-        repository2.saveAll(details);
-        return  order;
+        JsonNode orderDetailsNode = orderData.get("chiTietDonHangs");
+        if (orderDetailsNode != null && orderDetailsNode.isArray()) {
+            TypeReference<List<ChiTietDonHang>> type = new TypeReference<>() {};
+            List<ChiTietDonHang> details = mapper.convertValue(orderDetailsNode, type)
+                    .stream().peek(d -> d.setDonHang(savedOrder)).collect(Collectors.toList());
+            repository2.saveAll(details);
+        } else {
+            throw new IllegalArgumentException("orderDetails must be a non-null array");
+        }
+
+        return order;
+    }
+
+
+    @Override
+    public List<DonHang> findByNguoiDungId(UUID nguoiDungId) {
+        return repository.findByNguoiDungId(nguoiDungId);
     }
 }

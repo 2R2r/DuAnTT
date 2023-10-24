@@ -87,3 +87,21 @@
     margin: 5px; /* Khoảng cách giữa các lựa chọn */
 }
 
+.top-header-right ul {
+    display: flex; /* Sử dụng Flexbox */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.wrap {
+    padding-bottom: 10px;
+}
+
+.list-group {
+    border: none; /* Bỏ border */
+    border-bottom: 1px solid #ccc; /* Giữ border phía dưới */
+}
+
+
