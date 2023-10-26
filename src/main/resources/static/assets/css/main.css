@@ -103,5 +103,12 @@
     border: none; /* Bỏ border */
     border-bottom: 1px solid #ccc; /* Giữ border phía dưới */
 }
+.title{
+    padding-bottom: 26px;
+}
+
+.row {
+    margin: 20px 0px;
+}
 
 

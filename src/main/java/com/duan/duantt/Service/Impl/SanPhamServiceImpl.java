@@ -114,5 +114,28 @@ public class SanPhamServiceImpl implements SanPhamService {
         return viewSanPhamList;
     }
 
+    @Override
+    public List<ViewSanPham> findByTenContaining(String ten) {
+        List<SanPham> sanPhamList = repository.findByTenContaining(ten);
+        List<ViewSanPham> viewSanPhamList = new ArrayList<>();
+
+        for (SanPham sanPham : sanPhamList) {
+            List<ChiTietSanPham> chiTietSanPhamList = chiTietSanPhamRepository.findBySanPhamId(sanPham.getId());
+
+            // Lọc ra các ChiTietSanPham và SanPham có TrangThai = true
+            chiTietSanPhamList = chiTietSanPhamList.stream()
+                    .filter(chiTietSanPham -> chiTietSanPham.getTrangThai())
+                    .collect(Collectors.toList());
+
+            if (!chiTietSanPhamList.isEmpty()) {
+                ViewSanPham viewSanPham = convertSanPhamToViewSanPham(sanPham, chiTietSanPhamList.get(0));
+                viewSanPhamList.add(viewSanPham);
+            }
+        }
+
+        return viewSanPhamList;
+    }
+
+
 
 }

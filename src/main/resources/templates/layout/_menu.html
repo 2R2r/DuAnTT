@@ -63,8 +63,9 @@
     <div class="mid-header">
         <div class="wrap">
             <div class="mid-grid-left">
-                <form>
-                    <input type="text" placeholder="Bạn tìm  kiếm điều gì ?"/>
+                <form action="/product/search" method="GET">
+                    <input type="text" name="ten" placeholder="Bạn tìm kiếm điều gì?" />
+                    <button type="submit">Tìm kiếm</button>
                 </form>
             </div>
             <div class="mid-grid-right">

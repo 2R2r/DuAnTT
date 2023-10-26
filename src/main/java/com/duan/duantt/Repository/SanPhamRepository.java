@@ -13,4 +13,5 @@ import java.util.UUID;
 public interface SanPhamRepository extends JpaRepository<SanPham,UUID > {
 
     List<SanPham> findByTheLoaiId(UUID cateId);
+    List<SanPham> findByTenContaining(String ten);
 }

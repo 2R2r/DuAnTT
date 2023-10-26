@@ -16,4 +16,7 @@ public interface SanPhamService {
 
 
     List<ViewSanPham> findByTheLoaiId(UUID id);
+
+
+    List<ViewSanPham> findByTenContaining(String ten);
 }

@@ -193,11 +193,11 @@ body{
 }
 .content-left{
 	float: left;
-	width: 13%;
+	width: 22%;
 }
 .content-right{
 	float: right;
-	width: 87%;
+	width: 78%;
 }
 /*---start-check-box----*/
 .uncheked{
@@ -1954,10 +1954,10 @@ span.mail a:hover{
 		width: 78%;
 	}
 	.content-left {
-		width: 15%;
+		width: 22%;
 	}
 	.content-right {
-		width: 83%;
+		width: 78%;
 	}
 	.product-grid {
 		width: 47.6%;
