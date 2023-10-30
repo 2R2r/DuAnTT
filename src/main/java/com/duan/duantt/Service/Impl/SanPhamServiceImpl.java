@@ -30,4 +30,24 @@ public class SanPhamServiceImpl implements SanPhamService {
     public List<SanPham> findByCategoryId(UUID id){
         return repository.findByTheLoaiId(id);
     }
+
+    @Override
+    public SanPham add(SanPham sanPham) {
+        return repository.save(sanPham);
+    }
+
+    @Override
+    public SanPham getById(UUID id) {
+        return repository.findById(id).orElse(null);
+    }
+
+    @Override
+    public void delete(UUID id) {
+       repository.deleteById(id);
+    }
+
+    @Override
+    public void update(SanPham sanPham) {
+       repository.save(sanPham);
+    }
 }

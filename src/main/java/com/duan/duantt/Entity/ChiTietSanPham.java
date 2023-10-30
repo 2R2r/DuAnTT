@@ -26,13 +26,13 @@ public class ChiTietSanPham {
     private BigDecimal giaBan;
 
     @Column(name = "SoLuong")
-    private Integer soluong;
+    private Integer soLuong;
 
     @Column(name = "Hinhanh")
     private String hinhAnh;
 
     @Column(name = "TrangThai")
-    private Float trangThai;
+    private Boolean trangThai;
 
     @ManyToOne
     @JoinColumn(name = "IdSanPham")
