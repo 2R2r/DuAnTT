@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/kich-thuoc/")
+@RequestMapping("/admin/kich-thuoc/")
 public class KichThuocController {
     @Autowired
     private KichThuocService kichThuocService;
