@@ -21,6 +21,9 @@ public class KhuyenMai {
     @Column(name = "Ten")
     private String ten;
 
+    @Column(name = "Ma")
+    private String ma;
+
     @Column(name = "GiaTri")
     private BigDecimal giaTri;
 

@@ -21,7 +21,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Controller
-public class CartController {
+public class ProductController {
 
     @Autowired
     private SanPhamService sanPhamService;
@@ -76,7 +76,6 @@ public class CartController {
         return "error"; // Handle case when product is not found
     }
 
-    // Handling selected data from color and size options
     @PostMapping("/product/detail")
     @ResponseBody
     public ResponseEntity<?> handleSelectedData(
@@ -110,4 +109,13 @@ public class CartController {
         return ResponseEntity.badRequest().body(null);
 
     }
+
+    @GetMapping("/product/search")
+    public String searchSanPham(@RequestParam String ten,Model model) {
+
+        model.addAttribute("items", sanPhamService.findByTenContaining(ten));
+        return "sanpham/list";
+    }
 }
+
+

@@ -28,8 +28,8 @@ public class ChiTietDonHang {
     private DonHang donHang;
 
     @ManyToOne
-    @JoinColumn(name = "IdSanPham")
-    private SanPham sanPham;
+    @JoinColumn(name = "IdChiTietSanPham")
+    private ChiTietSanPham chiTietSanPham;
 
     // Getters and setters
 }

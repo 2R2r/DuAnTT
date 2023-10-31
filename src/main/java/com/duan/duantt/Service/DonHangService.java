@@ -17,4 +17,6 @@ public interface DonHangService {
 
 
     DonHang create(JsonNode orderData);
+
+    List<DonHang> findByNguoiDungId(UUID nguoiDungId);
 }

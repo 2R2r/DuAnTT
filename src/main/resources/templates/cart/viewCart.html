@@ -20,6 +20,7 @@
                 </tr>
                 </thead>
                 <tbody>
+
                 <tr ng-repeat="item in cartItems">
                     <td> {{item.chiTietSanPham.sanPham.ten}}</td>
                     <td>
@@ -35,26 +36,30 @@
                         <button class="btn btn-danger" ng-click="cart.remove(item.id)">Remove</button>
                     </td>
                 </tr>
+
+
                 </tbody>
             </table>
         </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12">
-            <p> Tổng tiền: {{totalPrice | number : 3}} VND</p>
+        <div class="row">
+            <div class="col-md-12">
+                <p> Tổng tiền: {{totalPrice | number : 3}} VND</p>
+            </div>
         </div>
     </div>
 
+
+
     <div class="row">
         <div class="col-md-12">
-            <button class="btn btn-primary" ng-click="cart.clear()">Clear Cart</button>
+            <button class="btn btn-danger"  ng-click="cart.clear()">Clear Cart</button>
         </div>
     </div>
-    <div class="row">
+
+    <div class="row" style="margin-top: 10px">
         <div class="col-md-12">
             <a th:href="@{/order/checkout}">
-                <i>Check out</i>
+                <i class="btn btn-primary">Check out</i>
             </a>
         </div>
     </div>
