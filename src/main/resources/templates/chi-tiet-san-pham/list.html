@@ -49,6 +49,14 @@
                            th:field="*{giaBan}">
                 </div>
             </div>
+
+            <div class="form-group">
+                <label>Hinh anh</label>
+                <div class="input-group colorpickerinput">
+                    <input type="file" accept="image/*" class="form-control" placeholder="Nhập Đơn Giá"
+                           th:field="*{hinhAnh}">
+                </div>
+            </div>
             <div class="form-group">
                 <label>Số lượng</label>
                 <div class="input-group colorpickerinput">
@@ -83,6 +91,7 @@
     <th>Size</th>
     <th>Giá nhập</th>
     <th>Giá bán</th>
+    <th>Hinh anh</th>
     <th>Số lượng</th>
     <th>Trạng thai</th>
     <th>Hành động</th>
@@ -93,7 +102,12 @@
         <td th:text="${list.mauSac}"></td>
         <td th:text="${list.kichThuoc}"></td>
         <td th:text="*{list.giaNhap}"></td>
-        <td th:text="*{list.giaBan}"></td>\
+        <td th:text="*{list.giaBan}"></td>
+        <td>
+            <a th:href="@{/product/detail/{id}(id=${sp.id})}">
+                <img th:src="@{|/assets/images/${list.hinhAnh}.jpg|}" width="100" height="150">
+            </a>
+        </td>
         <td th:text="*{list.soLuong}"></td>
         <td th:text="${list.trangThai  ? 'Hoạt động' : 'Không hoạt động'}"></td>
         <td>
