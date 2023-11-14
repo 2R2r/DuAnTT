@@ -6,88 +6,6 @@
 
 
 <main class="row">
-<!--    <div class="col-md-3">-->
-<!--        <div th:replace="/layout/_category.html"></div>-->
-<!--    </div>-->
-
-<!--    <div class="content-right product-box col-md-9">-->
-<!--        <div class="product-box-head">-->
-<!--            <div class="product-box-head-right">-->
-<!--                <ul class="nav">-->
-<!--                    <li class="nav-item dropdown">-->
-<!--                        <select class="form-control" id="priceDropdown" onchange="filterProducts(this.value)">-->
-<!--                            <option value="">Select Order</option>-->
-<!--                            <option value="lowToHigh">Low to High</option>-->
-<!--                            <option value="highToLow">High to Low</option>-->
-<!--                        </select>-->
-<!--                    </li>-->
-<!--                </ul>-->
-<!--            </div>-->
-<!--            <div class="clearfix"></div>-->
-<!--        </div>-->
-
-
-<!--        <div class="product-grids">-->
-<!--            &lt;!&ndash;- start-rate&#45;&#45;&ndash;&gt;-->
-<!--            <script src="js/jstarbox.js"></script>-->
-<!--            <link rel="stylesheet" href="css/jstarbox.css" type="text/css" media="screen" charset="utf-8" />-->
-<!--            <script type="text/javascript">-->
-<!--                jQuery(function () {-->
-<!--                    jQuery('.starbox').each(function () {-->
-<!--                        var starbox = jQuery(this);-->
-<!--                        starbox.starbox({-->
-<!--                            average: starbox.attr('data-start-value'),-->
-<!--                            changeable: starbox.hasClass('unchangeable') ? false : starbox.hasClass('clickonce') ? 'once' : true,-->
-<!--                            ghosting: starbox.hasClass('ghosting'),-->
-<!--                            autoUpdateAverage: starbox.hasClass('autoupdate'),-->
-<!--                            buttons: starbox.hasClass('smooth') ? false : starbox.attr('data-button-count') || 5,-->
-<!--                            stars: starbox.attr('data-star-count') || 5-->
-<!--                        }).bind('starbox-value-changed', function (event, value) {-->
-<!--                            if (starbox.hasClass('random')) {-->
-<!--                                var val = Math.random();-->
-<!--                                starbox.next().text(' ' + val);-->
-<!--                                return val;-->
-<!--                            }-->
-<!--                        })-->
-<!--                    });-->
-<!--                });-->
-<!--            </script>-->
-<!--&lt;!&ndash;            -//End-rate&#45;&#45;&ndash;&gt;-->
-<!--            <div th:each="product : ${items}" class="product-grid " >-->
-<!--                <div class="product-pic">-->
-<!--                    <a href="#"> <img th:src="@{|/assets/images/${product.hinhAnh}.jpg|}"></a>-->
-<!--                    <p>-->
-<!--                        <a href="#"><small th:text="${product.nsx.ten}"></small> <span th:text="${product.ten}"></span></a>-->
-<!--                        <span th:text="${product.moTa}"></span>-->
-<!--                    </p>-->
-<!--                </div>-->
-<!--                <div class="product-info">-->
-<!--                    <div  style="padding: 21px;" class="product-info-cust">-->
-<!--                        <a ng-click="loadProductDetail()" th:href="@{/product/detail/{id}(id=${product.id})}">Chi tiết</a>-->
-<!--                    </div>-->
-<!--                    <div class="product-info-price">-->
-<!--                        <a th:text="${product.giaBan + ' VND'}"></a>-->
-
-<!--                    </div>-->
-<!--                    <div class="clear"> </div>-->
-<!--                </div>-->
-<!--                <div class="more-product-info">-->
-<!--                    <span> </span>-->
-<!--                </div>-->
-<!--            </div>-->
-
-
-
-<!--            <div class="clear"> </div>-->
-<!--        </div>-->
-<!--        &lt;!&ndash;&#45;&#45;start-load-more-products&#45;&#45;&ndash;&gt;-->
-<!--        <div class="loadmore-products">-->
-<!--            <a href="#">Loadmore</a>-->
-<!--        </div>-->
-<!--        &lt;!&ndash;&#45;&#45;//End-load-more-products&#45;&#45;&ndash;&gt;-->
-<!--    </div>-->
-
-
 
     <div class="content product-box-main">
         <div class="wrap">
@@ -141,7 +59,6 @@
                         <div class="product-pic">
                             <a href="#"> <img th:src="@{|/assets/images/${product.hinhAnh}.jpg|}"></a>
                             <p>
-<!--                                <a href="#"><small th:text="${product.nsx.ten}"></small> <span th:text="${product.ten}"></span></a>-->
 
                                 <span th:text="${product.ten}"></span>
                             </p>

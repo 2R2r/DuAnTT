@@ -10,6 +10,7 @@ import com.duan.duantt.Service.KichThuocService;
 import com.duan.duantt.Service.MauSacService;
 import com.duan.duantt.Service.SanPhamService;
 import com.duan.duantt.ViewModel.ViewSanPham;
+import com.duan.duantt.security.AuthController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,9 @@ import java.util.UUID;
 
 @Controller
 public class ProductController {
+
+    @Autowired
+    private AuthController authController;
 
     @Autowired
     private SanPhamService sanPhamService;
@@ -42,12 +46,19 @@ public class ProductController {
 
     @GetMapping("/cart/view")
     public String list(Model model){
+        if (authController.getAuthentication() != null){
+            model.addAttribute("ten",authController.getAuthentication().getName());
+
+        }
         return "cart/viewCart";
     }
 
-    @GetMapping("/product/list")
+    @GetMapping("/home/product")
     public String list(Model model, @RequestParam("cid") Optional<UUID> cid) {
+        if (authController.getAuthentication() != null){
+            model.addAttribute("ten",authController.getAuthentication().getName());
 
+        }
         if (cid.isPresent()) {
             model.addAttribute("items", sanPhamService.findByTheLoaiId(cid.get()));
             return "sanpham/list";
@@ -60,6 +71,10 @@ public class ProductController {
 
     @GetMapping("/product/detail/{id}")
     public String detail(Model model, @PathVariable("id") UUID id) {
+        if (authController.getAuthentication() != null){
+            model.addAttribute("ten",authController.getAuthentication().getName());
+
+        }
         // Assume sanPhamService and chiTietSanPhamService are properly injected and implemented
             ViewSanPham sanPham = sanPhamService.findById(id).orElse(null);
         if (sanPham != null) {
@@ -82,6 +97,7 @@ public class ProductController {
             @RequestParam UUID colorId,
             @RequestParam(required = false) UUID sizeId,
             @RequestParam UUID productId) {
+
         ChiTietSanPham chiTietSanPham = null;
 
         if (colorId != null && sizeId != null && productId != null) {
@@ -112,6 +128,10 @@ public class ProductController {
 
     @GetMapping("/product/search")
     public String searchSanPham(@RequestParam String ten,Model model) {
+        if (authController.getAuthentication() != null){
+            model.addAttribute("ten",authController.getAuthentication().getName());
+
+        }
 
         model.addAttribute("items", sanPhamService.findByTenContaining(ten));
         return "sanpham/list";

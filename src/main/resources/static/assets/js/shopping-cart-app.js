@@ -160,7 +160,7 @@ app.controller("shopping-cart-ctrl", function ($scope, $http) {
 
                 })
                 .catch(function (error) {
-                    alert("Có lỗi xảy ra khi gọi API!");
+                    alert("Vui lòng đăng nhập");
                     console.error(error);
                 });
 
@@ -255,6 +255,8 @@ app.controller("shopping-cart-ctrl", function ($scope, $http) {
             $http.post("/rest/order/add", order).then(resp => {
                 alert("Dat hang thanh cong");
                 console.log(resp.data);
+                location.href = "/home/product";
+
             }).catch(error => {
                 alert("Dat hang loi");
                 console.log(error);

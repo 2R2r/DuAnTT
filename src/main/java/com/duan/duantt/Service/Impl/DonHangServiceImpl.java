@@ -6,6 +6,8 @@ import com.duan.duantt.Entity.DonHang;
 import com.duan.duantt.Repository.ChiTietDonHangRepository;
 import com.duan.duantt.Repository.DonHangRepository;
 import com.duan.duantt.Service.DonHangService;
+import com.duan.duantt.Service.NguoiDungService;
+import com.duan.duantt.security.AuthController;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,10 +25,14 @@ public class DonHangServiceImpl implements DonHangService {
     @Autowired
     private DonHangRepository repository;
 
+    @Autowired
+    private AuthController authController;
 
     @Autowired
     private ChiTietDonHangRepository repository2;
 
+    @Autowired
+    private NguoiDungService nguoiDungService;
 
     public List<DonHang> getAll(){
         return repository.findAll();
@@ -45,6 +51,7 @@ public class DonHangServiceImpl implements DonHangService {
 
         ObjectMapper mapper = new ObjectMapper();
         DonHang order = mapper.convertValue(orderData, DonHang.class);
+        order.setNguoiDung(nguoiDungService.findByTaiKhoan(authController.getAuthentication().getName()).get());
         DonHang savedOrder = repository.save(order);
 
         JsonNode orderDetailsNode = orderData.get("chiTietDonHangs");

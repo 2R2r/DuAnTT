@@ -338,7 +338,7 @@ input[type=checkbox].css-checkbox15:checked + label i.css-label15 {
 	-moz-transition:0.5s all;
 	-o-transition:0.5s all;
 }
-.active1:hover{
+.active1:hover{price
 	color:#A5A5A5;
 }
 .normal{
@@ -1349,13 +1349,7 @@ h2.resp-accordion:first-child {
 .price{
 	float:left;
 }
-.price span{
-	display: block;
-	text-decoration: line-through;
-	color: red;
-	font-size: 1.2em;
-	padding: 0.5em 0;
-}
+
 .price label{
 	display: block;
 	color: green;

@@ -27,4 +27,18 @@ public class NguoiDungServiceImpl implements NguoiDungService {
 
         return Optional.empty();
     }
+
+
+
+
+    @Override
+    public Optional<NguoiDung> findByTaiKhoan(String username) {
+        Optional<NguoiDung> nguoiDung = repository.findByTaiKhoan(username);
+
+        if (nguoiDung.isPresent()){
+            return nguoiDung;
+        }
+
+        return Optional.empty();
+    }
 }
