@@ -276,7 +276,7 @@
                                 <div class="input-group">
                                     <select class="form-control" th:field="*{theLoai}">
                                         <option th:each="theLoai:${theLoais}" th:value="${theLoai.id}"
-                                                th:text="${theLoai.name}"></option>
+                                                th:text="${theLoai.ten}"></option>
                                     </select>
                                 </div>
                             </div>
@@ -331,14 +331,6 @@
                             <div class="table-responsive">
                                 <table class="table table-striped">
                                     <tr>
-                                        <th class="text-center">
-                                            <div class="custom-checkbox custom-checkbox-table custom-control">
-                                                <input type="checkbox" data-checkboxes="mygroup"
-                                                       data-checkbox-role="dad"
-                                                       class="custom-control-input" id="checkbox-all">
-                                                <label for="checkbox-all" class="custom-control-label">&nbsp;</label>
-                                            </div>
-                                        </th>
                                         <th>Tên Sản Phẩm</th>
                                         <th>NSX</th>
                                         <th>Thể Loại</th>

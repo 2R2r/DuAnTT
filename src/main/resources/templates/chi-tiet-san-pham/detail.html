@@ -253,7 +253,7 @@
                         <div class="card-header">
                             <h4>Bài viết</h4>
                         </div>
-                        <form th:action="@{admin/chi-tiet-san-pham/update(id=${ctsp1.id})}" method="post" th:object="${ctsp1}"
+                        <form th:action="@{admin/chi-tiet-san-pham/update(id=${ctsp.id})}" method="post" th:object="${ctsp}"
                               onsubmit="return  confirm('Bạn có thêm không?')">
                             <div class="card-body">
                                 <div class="form-group">

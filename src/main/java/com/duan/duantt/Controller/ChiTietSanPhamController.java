@@ -39,7 +39,7 @@ public class ChiTietSanPhamController {
         model.addAttribute("kichThuocs",kichThuocs);
         model.addAttribute("mauSacs",mauSacs);
         model.addAttribute("ctsp",new ChiTietSanPham());
-        return "admin/chi-tiet-san-pham/list";
+        return "chi-tiet-san-pham/list";
     }
 
     @PostMapping("add")
@@ -60,7 +60,7 @@ public class ChiTietSanPhamController {
         model.addAttribute("sanPhams",sanPhams);
         model.addAttribute("kichThuocs",kichThuocs);
         model.addAttribute("mauSacs",mauSacs);
-        return "admin/chi-tiet-san-pham/detail";
+        return "chi-tiet-san-pham/detail";
     }
 
     @GetMapping("delete/{id}")
