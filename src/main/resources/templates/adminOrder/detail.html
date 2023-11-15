@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{/layout/index :: dynamic(~{::main})}"
+>
+<body>
+
+<main class="container">
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Chi tiết đơn hàng</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Tên Sản Phẩm</th>
+                <th>Giá</th>
+                <th>Số Lượng</th>
+                <th>Tổng</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item : ${order.chiTietDonHangs}">
+                <td th:text="${item.chiTietSanPham.sanPham.ten}"></td>
+                <td th:text="${#numbers.formatDecimal(item.gia, 0, 'COMMA', 2, 'POINT')} + ' VND'"></td>
+                <td th:text="${item.soLuong}"></td>
+                <td th:text="${#numbers.formatDecimal(item.gia * item.soLuong, 0, 'COMMA', 2, 'POINT')} + ' VND'"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+</main>
+
+</body>
+</html>

@@ -72,4 +72,9 @@ public class DonHangServiceImpl implements DonHangService {
     public List<DonHang> findByNguoiDungId(UUID nguoiDungId) {
         return repository.findByNguoiDungId(nguoiDungId);
     }
+
+    @Override
+    public DonHang save(DonHang donHang) {
+        return repository.save(donHang);
+    }
 }
