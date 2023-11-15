@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/chi-tiet-san-pham/")
+@RequestMapping("/admin/chi-tiet-san-pham/")
 public class ChiTietSanPhamController {
     @Autowired
     private ChiTietSanPhamService2 chiTietSanPhamService;
@@ -46,7 +46,7 @@ public class ChiTietSanPhamController {
     public String add(@ModelAttribute("ctsp") ChiTietSanPham chiTietSanPham,Model model, HttpSession session){
         chiTietSanPhamService.add(chiTietSanPham);
         session.setAttribute("successMessage", "Thêm thành công");
-        return "redirect:/chi-tiet-san-pham/hien-thi";
+        return "redirect:/admin/chi-tiet-san-pham/hien-thi";
 
     }
 
@@ -66,7 +66,7 @@ public class ChiTietSanPhamController {
     @GetMapping("delete/{id}")
     public String delete(@PathVariable("id") UUID id){
         chiTietSanPhamService.delete(id);
-        return "redirect:/chi-tiet-san-pham/hien-thi";
+        return "redirect:/admin/chi-tiet-san-pham/hien-thi";
     }
 
 
@@ -75,7 +75,7 @@ public class ChiTietSanPhamController {
 
         chiTietSanPhamService.update(chiTietSanPham);
         session.setAttribute("successMessage", "Thêm thành công");
-        return "redirect:/chi-tiet-san-pham/hien-thi";
+        return "redirect:/admin/chi-tiet-san-pham/hien-thi";
 
     }
 }

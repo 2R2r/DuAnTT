@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/nsx/")
+@RequestMapping("/admin/nsx/")
 public class NSXController {
     @Autowired
     private NSXService nsxService;
@@ -22,7 +22,7 @@ public class NSXController {
     @GetMapping("hien-thi")
     public String listNSX(Model model) {
         List<NSX> nsxs = nsxService.getAll();
-        model.addAttribute("nsxs", nsxs);
+        model.addAttribute("list", nsxs);
         model.addAttribute("nsx1", new NSX());
         return "nsx/list";
     }
@@ -32,14 +32,14 @@ public class NSXController {
         List<NSX> nsxs = new ArrayList<>();
         model.addAttribute("nsx1", nsxs);
         nsxService.add(nsx);
-        return "redirect:/nsx/hien-thi";
+        return "redirect:/admin/nsx/hien-thi";
     }
 
     @GetMapping("delete/{id}")
     public String deleteNSX(@PathVariable UUID id, RedirectAttributes redirectAttributes, Model model) {
         nsxService.delete(id);
         redirectAttributes.addFlashAttribute("message", "Delete Success");
-        return "redirect:/nsx/hien-thi";
+        return "redirect:/admin/nsx/hien-thi";
     }
 
     @GetMapping("view-update/{id}")
@@ -53,6 +53,6 @@ public class NSXController {
     public String updateMauSac(@ModelAttribute("nsx1") NSX nsx, Model model) {
         model.addAttribute("nsx1", nsx);
         nsxService.add(nsx);
-        return "redirect:/nsx/hien-thi";
+        return "redirect:/admin/nsx/hien-thi";
     }
 }

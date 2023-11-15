@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/the-loai/")
+@RequestMapping("/admin/the-loai/")
 public class TheLoaiController {
     @Autowired
     private TheLoaiService theLoaiService;
@@ -22,7 +22,7 @@ public class TheLoaiController {
     @GetMapping("hien-thi")
     public String listTheLoai(Model model){
         List<TheLoai> theLoais = theLoaiService.getAll();
-        model.addAttribute("theLoais",theLoais);
+        model.addAttribute("list",theLoais);
         model.addAttribute("tl1",new TheLoai());
         return "theloai/list";
     }
@@ -32,14 +32,14 @@ public class TheLoaiController {
         List<TheLoai> theLoais = new ArrayList<>();
         model.addAttribute("tl1", theLoais);
         theLoaiService.add(theLoai);
-        return "redirect:/the-loai/hien-thi";
+        return "redirect:/admin/the-loai/hien-thi";
     }
 
     @GetMapping("delete/{id}")
     public String deleteNSX(@PathVariable UUID id, RedirectAttributes redirectAttributes, Model model) {
         theLoaiService.delete(id);
         redirectAttributes.addFlashAttribute("message", "Delete Success");
-        return "redirect:/the-loai/hien-thi";
+        return "redirect:/admin/the-loai/hien-thi";
     }
 
     @GetMapping("view-update/{id}")
@@ -53,6 +53,6 @@ public class TheLoaiController {
     public String updateMauSac(@ModelAttribute("tl1") TheLoai theLoai, Model model) {
         model.addAttribute("tl1", theLoai);
         theLoaiService.add(theLoai);
-        return "redirect:/the-loai/hien-thi";
+        return "redirect:/admin/the-loai/hien-thi";
     }
 }

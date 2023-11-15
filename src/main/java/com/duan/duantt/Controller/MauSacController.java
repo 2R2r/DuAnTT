@@ -16,7 +16,7 @@ import java.util.Random;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/mau-sac/")
+@RequestMapping("/admin/mau-sac/")
 public class MauSacController {
     @Autowired
     private MauSacService mauSacService;
@@ -25,7 +25,7 @@ public class MauSacController {
     @GetMapping("hien-thi")
     public String listMauSacs(Model model) {
         List<MauSac> mauSacs = mauSacService.getAll();
-        model.addAttribute("mauSacs", mauSacs);
+        model.addAttribute("list", mauSacs);
         model.addAttribute("ms1", new MauSac());
         return "mausac/list";
     }
@@ -35,13 +35,13 @@ public class MauSacController {
         List<MauSac> mauSacs = new ArrayList<>();
         model.addAttribute("ms1", mauSacs);
         mauSacService.add(mauSac);
-        return "redirect:/mau-sac/hien-thi";
+        return "redirect:/admin/mau-sac/hien-thi";
     }
     @GetMapping("delete/{id}")
     public String deleteMauSac(@PathVariable UUID id, RedirectAttributes redirectAttributes , Model model) {
         mauSacService.delete(id);
         redirectAttributes.addFlashAttribute("message","Delete Success");
-        return "redirect:/mau-sac/hien-thi";
+        return "redirect:/admin/mau-sac/hien-thi";
     }
 
     @GetMapping("view-update/{id}")
@@ -55,6 +55,6 @@ public class MauSacController {
     public String updateMauSac(@ModelAttribute("ms1") MauSac mauSac, Model model) {
         model.addAttribute("ms1", mauSac);
         mauSacService.add(mauSac);
-        return "redirect:/mau-sac/hien-thi";
+        return "redirect:/admin/mau-sac/hien-thi";
     }
 }

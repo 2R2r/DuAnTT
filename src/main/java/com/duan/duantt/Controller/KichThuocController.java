@@ -22,7 +22,7 @@ public class KichThuocController {
     @GetMapping("hien-thi")
     public String listKichThuocc(Model model) {
         List<KichThuoc> kichThuocs = kichThuocService.getAll();
-        model.addAttribute("kichThuocs", kichThuocs);
+        model.addAttribute("list", kichThuocs);
         model.addAttribute("kt1", new KichThuoc());
         return "kichthuoc/list";
     }
@@ -32,14 +32,14 @@ public class KichThuocController {
         List<KichThuoc> kichThuocs= new ArrayList<>();
         model.addAttribute("kt1",kichThuocs);
         kichThuocService.add(kichThuoc);
-        return "redirect:/kich-thuoc/hien-thi";
+        return "redirect:/admin/kich-thuoc/hien-thi";
 
     }
     @GetMapping("delete/{id}")
     public String deleteMauSac(@PathVariable UUID id, RedirectAttributes redirectAttributes , Model model) {
         kichThuocService.delete(id);
         redirectAttributes.addFlashAttribute("message","Delete Success");
-        return "redirect:/kich-thuoc/hien-thi";
+        return "redirect:/admin/kich-thuoc/hien-thi";
     }
 
     @GetMapping("view-update/{id}")
@@ -55,7 +55,7 @@ public class KichThuocController {
         List<KichThuoc> kichThuocs= new ArrayList<>();
         model.addAttribute("kt1",kichThuocs);
         kichThuocService.add(kichThuoc);
-        return "redirect:/kich-thuoc/hien-thi";
+        return "redirect:/admin/kich-thuoc/hien-thi";
 
     }
 

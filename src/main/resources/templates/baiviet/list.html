@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title> SneakBeer - Kích thước </title>
+    <title> SneakBeer - Bài viết </title>
     <!-- General CSS Files -->
     <link th:href="@{/assets/css/app.min.css}" rel="stylesheet">
     <!-- Template CSS -->
@@ -251,9 +251,9 @@
                 <div class="col-12 col-md-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Màu sắc</h4>
+                            <h4>Bài viết</h4>
                         </div>
-                        <form th:action="@{/admin/mau-sac/update(id=${ms1.id})}" method="post" th:object="${ms1}"
+                        <form action="/admin/bai-viet/add" method="post" th:object="${bv1}"
                               onsubmit="return  confirm('Bạn có thêm không?')">
                             <div class="card-body">
                                 <!--                                <div class="form-group">-->
@@ -266,9 +266,27 @@
                                 <!--                                    </div>-->
                                 <!--                                </div>-->
                                 <div class="form-group">
-                                    <label>Tên  màu sắc</label>
-                                    <input type="text" class="form-control" placeholder="Nhập tên màu sắc"
-                                           th:field="*{ten}">
+                                    <label>Tiêu đề</label>
+                                    <input type="text" class="form-control" placeholder="Nhập tên Tiêu đề"
+                                           th:field="*{tieuDe}">
+
+                                </div>
+                                <div class="form-group">
+                                    <label>Nội dung</label>
+                                    <input type="text" class="form-control" placeholder="Nhập tên Tiêu đề"
+                                           th:field="*{noiDung}">
+
+                                </div>
+                                <div class="form-group">
+                                    <label>Tiêu đề</label>
+                                    <input type="file" class="form-control" placeholder="Nhập tên Tiêu đề"
+                                           th:field="*{hinhAnh}">
+
+                                </div>
+                                <div class="form-group">
+                                    <label>Tiêu đề</label>
+                                    <input type="date" class="form-control" placeholder="Nhập tên Tiêu đề"
+                                           th:field="*{ngayTao}">
 
                                 </div>
                                 <div class="form-group">
@@ -288,7 +306,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <button class="btn btn-primary mr-1" type="submit">Update</button>
+                                    <a th:href="@{/admin/bai-viet/add}">
+                                        <button class="btn btn-primary mr-1" type="submit">Thêm</button>
+                                    </a>
                                 </div>
                             </div>
                         </form>
@@ -298,6 +318,67 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
+                        <div class="card-header">
+                            <h4>Danh sách Bài viết</h4>
+                            <div class="card-header-form">
+                                <form>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <tr>
+                                        <th class="text-center">
+                                            <div class="custom-checkbox custom-checkbox-table custom-control">
+                                                <input type="checkbox" data-checkboxes="mygroup"
+                                                       data-checkbox-role="dad"
+                                                       class="custom-control-input" id="checkbox-all">
+                                                <label for="checkbox-all" class="custom-control-label">&nbsp;</label>
+                                            </div>
+                                        </th>
+                                        <th>Id</th>
+                                        <th>Tiêu đề</th>
+                                        <th>Nội dung</th>
+                                        <th>Hình ảnh</th>
+                                        <th>Ngày tạo</th>
+                                        <th>Trạng thái</th>
+                                        <th>Hành động</th>
+                                    </tr>
+                                    <tr th:each="list:${list}">
+
+                                        <td th:text="*{list.id}"></td>
+                                        <td th:text="*{list.tieuDe}"></td>
+                                        <td th:text="*{list.noiDung}"></td>
+                                        <td>
+                                            <img th:src="@{|/assets/images/${list.hinhAnh}|}" width="100" height="150">
+                                            <!--            <img th:src="@{|/assets/images/${list.hinhAnh}|}">-->
+                                        </td>
+                                        <td th:text="*{list.ngayTao}"></td>
+                                        <td th:text="${list.trangThai  ? 'Hoạt động' : 'Không hoạt động'}"></td>
+                                        <td>
+                                            <a th:href="@{'/admin/bai-viet/delete/'+${list.id}}">
+                                                <button type="button" class="btn btn-danger"
+                                                        onsubmit="return  confirm('Bạn có xoá không?')">
+                                                    Xoá
+                                                </button>
+                                            </a>
+                                            <a th:href="@{'/admin/bai-viet/view-update/'+${list.id}}">
+                                                <button type="button" class="btn btn-success">
+                                                    Cập nhật
+                                                </button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
                         <div class="card-footer text-right">
                             <nav class="d-inline-block">
                                 <div class="settingSidebar">
