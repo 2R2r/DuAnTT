@@ -7,6 +7,7 @@ import com.duan.duantt.Entity.ChiTietSanPham;
 import com.duan.duantt.Entity.GioHang;
 import com.duan.duantt.Entity.NguoiDung;
 import com.duan.duantt.Service.*;
+import com.duan.duantt.security.AuthController;
 import com.fasterxml.jackson.databind.JsonNode;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
@@ -22,6 +23,9 @@ import java.util.UUID;
 @RequestMapping("/rest")
 @RestController
 public class CartRestController {
+
+    @Autowired
+    private AuthController authController;
 
     @Autowired
     private SanPhamService sanPhamService;
@@ -47,8 +51,11 @@ public class CartRestController {
 
     @GetMapping("/chitietgiohang")
     public List<ChiTietGioHang> getChiTietGioHang(HttpSession session) {
-        UUID uuid = UUID.fromString("1127166f-2172-44ad-9606-8314a9919fd9");
-        Optional<NguoiDung> nguoiDung = nguoiDungService.findById(uuid);
+        if (authController.getAuthentication() != null && !"anonymousUser".equals(authController.getAuthentication().getPrincipal())){
+
+
+        Optional<NguoiDung> nguoiDung = nguoiDungService.findByTaiKhoan(authController.getAuthentication().getName());
+
 
         if (nguoiDung.isPresent()) {
             GioHang gioHang = gioHangService.findByNguoiDungId(nguoiDung.get().getId());
@@ -62,7 +69,9 @@ public class CartRestController {
             }
         }
 
+        }
         return Collections.emptyList();
+
     }
 
 
@@ -72,9 +81,14 @@ public class CartRestController {
 
         String productIdString = orderData.get("productId").asText(); // Lấy giá trị UUID dưới dạng String
         UUID productId = UUID.fromString(productIdString); // Chuyển String sang UUID
+        if (authController.getAuthentication() == null){
 
-        UUID uuid = UUID.fromString("1127166f-2172-44ad-9606-8314a9919fd9");
-        Optional<NguoiDung> nguoiDung = nguoiDungService.findById(uuid);
+            return ResponseEntity.status(400).body(null);
+
+        }
+
+        Optional<NguoiDung> nguoiDung = nguoiDungService.findByTaiKhoan(authController.getAuthentication().getName());
+
 
         if (nguoiDung != null && productId != null) {
             GioHang gioHang = gioHangService.findByNguoiDungId(nguoiDung.get().getId());
@@ -112,6 +126,8 @@ public class CartRestController {
                 return ResponseEntity.ok(chiTietGioHang);
             }
         }
+
+
 
         return ResponseEntity.status(400).body(null);
     }
@@ -182,8 +198,8 @@ public class CartRestController {
     @Transactional
     @PostMapping("/cart/clear")
     public void clearCart() {
-        UUID uuid = UUID.fromString("1127166f-2172-44ad-9606-8314a9919fd9");
-        Optional<NguoiDung> nguoiDung = nguoiDungService.findById(uuid);
+        Optional<NguoiDung> nguoiDung = nguoiDungService.findByTaiKhoan(authController.getAuthentication().getName());
+
 
         if (nguoiDung.isPresent()) {
             GioHang gioHang = gioHangService.findByNguoiDungId(nguoiDung.get().getId());

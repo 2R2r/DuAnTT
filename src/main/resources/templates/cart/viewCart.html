@@ -4,8 +4,9 @@
 >
 <body>
 
-<main class="container">
-    <h1>Shopping Cart</h1>
+<main class="container" style="    margin-bottom: 30px;
+    margin-top: 30px;">
+    <h1>Giỏ hàng</h1>
 
     <div class="row" th:fragment="shopping-cart">
         <div class="col-md-12">
@@ -33,7 +34,7 @@
 
                     <td> {{item.soLuong*item.chiTietSanPham.giaBan | number : 3}} VND</td>
                     <td>
-                        <button class="btn btn-danger" ng-click="cart.remove(item.id)">Remove</button>
+                        <button class="btn btn-danger" ng-click="cart.remove(item.id)">Xóa</button>
                     </td>
                 </tr>
 
@@ -52,14 +53,14 @@
 
     <div class="row">
         <div class="col-md-12">
-            <button class="btn btn-danger"  ng-click="cart.clear()">Clear Cart</button>
+            <button class="btn btn-danger"  ng-click="cart.clear()">Xóa tất cả</button>
         </div>
     </div>
 
     <div class="row" style="margin-top: 10px">
         <div class="col-md-12">
             <a th:href="@{/order/checkout}">
-                <i class="btn btn-primary">Check out</i>
+                <i class="btn btn-primary">Thanh toán</i>
             </a>
         </div>
     </div>

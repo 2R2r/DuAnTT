@@ -8,4 +8,7 @@ import java.util.UUID;
 public interface NguoiDungService {
 
     Optional<NguoiDung>  findById(UUID uuid);
+
+    Optional<NguoiDung> findByTaiKhoan(String username);
+
 }

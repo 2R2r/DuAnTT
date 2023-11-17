@@ -30,6 +30,15 @@
                     <li><a class="info" href="#"><span> </span></a></li>
                 </ul>
             </div>
+            <div style="display: flex" class="top-header-left">
+                <div class="top-header-left">
+                    <a href="/home/product">Home</a>
+                    <a ng-show="showAdminLink" href="/admin">  Admin</a>
+                </div>
+
+
+                <div class="clear"></div>
+            </div>
             <div class="top-header-center">
                 <div class="top-header-center-alert-left">
                     <h3>Giao hàng miễn phí</h3>
@@ -43,19 +52,35 @@
                 </div>
                 <div class="clear"></div>
             </div>
-            <div class="top-header-right">
+            <div xmlns:th="http://www.thymeleaf.org" class="top-header-right">
                 <ul>
-                    <li><a href="login.html">Đăng nhập</a><span> </span></li>
-                    <li><a href="register.html">Đăng ký</a></li>
-                    <div xmlns:th="http://www.thymeleaf.org">
-                        <div style=" margin-left: 20px;" class="list-group">
-                            <i class="glyphicon glyphicon-shopping-cart" style="font-size: 25px;color: red"></i>
+
+
+                    <li>
+                        <a  href="/bai-viet/hien-thi">TIN TỨC SẢN PHẨM  |  </a>
+
+                    </li>
+                    <li th:if="${ten != null and ten ne 'anonymousUser'}">
+                        <!-- Display if 'ten' is not null and not ANONYMOUSUSER -->
+                        <a href="/order/list" style="color: #FFF; font-size: 0.7em; text-transform: uppercase;" th:text="${ten}"></a> |
+                        <a href="/auth/logoff">Đăng xuất</a>
+                    </li>
+                    <li th:unless="${ten != null and ten ne 'anonymousUser'}">
+                        <!-- Display if 'ten' is null or ANONYMOUSUSER -->
+                        <a href="/auth/login/form"> Đăng nhập</a> | <a href="/auth/register/form">Đăng ký</a>
+                    </li>
+                    <div>
+                        <div style="margin-left: 20px;" class="list-group">
+                            <i class="glyphicon glyphicon-shopping-cart" style="font-size: 25px; color: red"></i>
                             <a style="color: white;" th:href="@{/cart/view}">{{totalQuantity}} Giỏ hàng</a>
                         </div>
                     </div>
                 </ul>
-
             </div>
+
+
+
+
             <div class="clear"></div>
         </div>
     </div>
@@ -64,8 +89,8 @@
         <div class="wrap">
             <div class="mid-grid-left">
                 <form action="/product/search" method="GET">
-                    <input type="text" name="ten" placeholder="Bạn tìm kiếm điều gì?" />
-                    <button type="submit">Tìm kiếm</button>
+                    <input type="text" name="ten" placeholder="Bạn tìm kiếm điều gì?"/>
+                    <button style="margin-top: 10px" type="submit">Tìm kiếm</button>
                 </form>
             </div>
             <div class="mid-grid-right">
@@ -76,26 +101,26 @@
     </div>
     <!----//End-mid-head---->
     <!----start-bottom-header---->
-    <div class="header-bottom">
-        <div class="wrap">
-            <!-- start header menu -->
-            <ul class="megamenu skyblue">
-                <li class="grid"><a class="color2" href="#">Giày Nam</a>
+<!--    <div class="header-bottom">-->
+<!--        <div class="wrap">-->
+<!--            &lt;!&ndash; start header menu &ndash;&gt;-->
+<!--            <ul class="megamenu skyblue">-->
+<!--                <li class="grid"><a class="color2" href="#">Giày Nam</a>-->
 
-                </li>
-                <li class="active grid"><a class="color4" href="#">Giày Nữ</a>
+<!--                </li>-->
+<!--                <li class="active grid"><a class="color4" href="#">Giày Nữ</a>-->
 
-                </li>
-                <li><a class="color5" href="#">Giày cho bé</a>
+<!--                </li>-->
+<!--                <li><a class="color5" href="#">Giày cho bé</a>-->
 
-                </li>
-                <li><a class="color6" href="#">Giày thể thao</a>
+<!--                </li>-->
+<!--                <li><a class="color6" href="#">Giày thể thao</a>-->
 
-                </li>
+<!--                </li>-->
 
 
-            </ul>
+<!--            </ul>-->
 
-        </div>
-    </div>
+<!--        </div>-->
+<!--    </div>-->
 </div>

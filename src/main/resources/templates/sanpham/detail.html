@@ -76,83 +76,91 @@
                 <script src="js/jquery.etalage.min.js"></script>
                 <div class="container">
                     <div class="row">
-                <div class="details-left">
-                    <div class="details-left-slider">
-                        <img style="    display: inline; width: 300px;height: 400px;opacity: 1;" id="product-image" th:src="@{|/assets/images/${item.hinhAnh}.jpg|}" class="card-img-top" src=""
-                             alt="Product Image">
-                    </div>
-                    <div class="details-left-info">
-                        <div class="details-right-head">
-                            <h2  th:text="${item.ten}" >Product Name</h2>
+                        <div class="details-left">
+                            <div class="details-left-slider">
+                                <img id="product-image" th:src="@{|/assets/images/${item.hinhAnh}.jpg|}"
+                                     class="card-img-top" src=""
+                                     alt="Product Image">
+                            </div>
+                            <div class="details-left-info">
+                                <div class="details-right-head">
+                                    <h2 th:text="${item.ten}">Product Name</h2>
 
-                            <div class="product-more-details">
-                                <ul class="price-avl">
-                                    <li class="price"><span th:text="${item.giaBan}" id="product-price">0.00</span></li>
+                                    <div class="product-more-details">
+                                        <span th:text="${item.giaBan} + ' đ' " id="product-price">0.00</span>
 
-                                    <div class="clear"></div>
-                                </ul>
-                                            <div class="col-md-6">
-                                                <div class="panel panel-default">
-                                                    <div class="panel-heading">
-                                                        <h3 class="panel-title">Additional Information</h3>
+                                        <div class="col-md-6">
+                                            <div class="panel panel-default">
+
+                                                <div class="list-unstyled">
+                                                    <!-- MauSac -->
+                                                    <div style="margin-top: 24px;" class="form-group">
+                                                        <label>Mau Sac:</label>
+                                                        <ul>
+                                                            <li class="item btn" th:each="mauSac : ${listOfMauSac}">
+                                                                <label class="color-label"
+                                                                       th:for="${'mauSac_' + mauSac.id}"
+                                                                       th:style="'background-color: ' + mauSac.mauHex">
+                                                                    <span class="color-span" th:text="${mauSac.ten}"
+                                                                          th:attr="data-value=${mauSac.id}"></span>
+                                                                </label>
+                                                                <input type="radio" name="mauSac"
+                                                                       id="${'mauSac_' + mauSac.id}"
+                                                                       th:value="${mauSac.id}" style="display: none;">
+                                                            </li>
+                                                        </ul>
                                                     </div>
-                                                    <div class="list-unstyled">
-                                                        <!-- MauSac -->
-                                                        <div class="form-group">
-                                                            <label>Mau Sac:</label>
-                                                            <ul>
-                                                                <li class="item" th:each="mauSac : ${listOfMauSac}">
-                                                                    <label class="color-label" th:for="${'mauSac_' + mauSac.id}" th:style="'background-color: ' + mauSac.mauHex">
-                                                                        <span class="color-span" th:text="${mauSac.ten}" th:attr="data-value=${mauSac.id}"></span>
-                                                                    </label>
-                                                                    <input type="radio" name="mauSac" id="${'mauSac_' + mauSac.id}" th:value="${mauSac.id}" style="display: none;">
-                                                                </li>
-                                                            </ul>
-                                                        </div>
 
-                                                        <!-- KichThuoc -->
-                                                        <div class="form-group">
-                                                            <label>Kich Thuoc:</label>
-                                                            <ul>
-                                                                <li class="item" th:each="kichThuoc : ${listOfKichThuoc}">
-                                                                    <label class="size-label" th:for="${'kichThuoc_' + kichThuoc.id}">
-                                                                        <span class="size-span" th:text="${kichThuoc.ten}" th:attr="data-value=${kichThuoc.id}"></span>
-                                                                    </label>
-                                                                    <input type="radio" name="kichThuoc" id="${'kichThuoc_' + kichThuoc.id}" th:value="${kichThuoc.id}" style="display: none;">
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-
+                                                    <!-- KichThuoc -->
+                                                    <div style="margin-top: 24px;" class="form-group">
+                                                        <label>Kich Thuoc:</label>
+                                                        <ul>
+                                                            <li class="item btn" th:each="kichThuoc : ${listOfKichThuoc}">
+                                                                <label class="size-label"
+                                                                       th:for="${'kichThuoc_' + kichThuoc.id}">
+                                                                    <span class="size-span" th:text="${kichThuoc.ten}"
+                                                                          th:attr="data-value=${kichThuoc.id}"></span>
+                                                                </label>
+                                                                <input type="radio" name="kichThuoc"
+                                                                       id="${'kichThuoc_' + kichThuoc.id}"
+                                                                       th:value="${kichThuoc.id}"
+                                                                       style="display: none;">
+                                                            </li>
+                                                        </ul>
                                                     </div>
+
                                                 </div>
                                             </div>
+                                        </div>
+                                        </button>
+                                        <div class="card-body">
+                                            <p style="display: none" id="product-id" th:text="${item.id}"
+                                               th:value="${item.id}" th:type="hidden"></p>
+                                            <p style="margin: 10px 0px" id="product-soLuong" class="card-text">Số lượng</p>
+                                        </div>
 
-                                            <button id="cart-button" class="btn btn-success">
-                                                <i>Cart</i>
+                                        <button style="margin-top: 24px; margin-top: 24px; padding: 12px" id="cart-button" class="btn btn-cart ">
+                                            <i style="font-size: 18px;">Thêm vào giỏ hàng</i>
+
                                             </button>
-                                <div class="card-body">
-                                                            <p style="display: none" id="product-id" th:text="${item.id}" th:value="${item.id}" th:type="hidden"></p>
-                                                            <p style="margin: 10px 0px" id="product-soLuong" class="card-text"></p>
-                                                        </div>
-
-                                <ul class="product-share">
-                                    <ul>
-                                        <li><a class="share-face" href="#"><span> </span> </a></li>
-                                        <li><a class="share-twitter" href="#"><span> </span> </a></li>
-                                        <li><a class="share-google" href="#"><span> </span> </a></li>
-                                        <li><a class="share-rss" href="#"><span> </span> </a></li>
-                                        <div class="clear"></div>
-                                    </ul>
-                                </ul>
+                                        <ul class="product-share">
+                                            <ul>
+                                                <li><a class="share-face" href="#"><span> </span> </a></li>
+                                                <li><a class="share-twitter" href="#"><span> </span> </a></li>
+                                                <li><a class="share-google" href="#"><span> </span> </a></li>
+                                                <li><a class="share-rss" href="#"><span> </span> </a></li>
+                                                <div class="clear"></div>
+                                            </ul>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="details-right">
+                            <a href="#">SEE MORE</a>
                         </div>
                     </div>
-                    <div class="clear"></div>
-                </div>
-                        <div class="details-right">
-                    <a href="#">SEE MORE</a>
-                        </div>
-                </div>
                 </div>
             </div>
             <!----product-rewies---->
@@ -193,7 +201,7 @@
                         </ul>
                         <div class="resp-tabs-container vertical-tabs">
                             <div>
-                                <p th:text="${item.moTa}" id="product-mota" ></p>
+                                <p th:text="${item.moTa}" id="product-mota"></p>
 
                             </div>
                         </div>
@@ -201,161 +209,161 @@
 
                     <div class="clear"></div>
                     <!--- start-similar-products--->
-<!--                    <div class="similar-products">-->
-<!--                        <div class="similar-products-left">-->
-<!--                            <h3>SIMILAR PRODUCTS</h3>-->
-<!--                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor-->
-<!--                                incididunt ut labore et dolore magna aliqua.</p>-->
-<!--                        </div>-->
-<!--                        <div class="similar-products-right">-->
-<!--                            &lt;!&ndash; start content_slider &ndash;&gt;-->
-<!--                            &lt;!&ndash;- start-rate&#45;&#45;&ndash;&gt;-->
-<!--                            <script src="js/jstarbox.js"></script>-->
-<!--                            <link rel="stylesheet" href="css/jstarbox.css" type="text/css" media="screen"-->
-<!--                                  charset="utf-8"/>-->
-<!--                            <script type="text/javascript">-->
-<!--                                jQuery(function () {-->
-<!--                                    jQuery('.starbox').each(function () {-->
-<!--                                        var starbox = jQuery(this);-->
-<!--                                        starbox.starbox({-->
-<!--                                            average: starbox.attr('data-start-value'),-->
-<!--                                            changeable: starbox.hasClass('unchangeable') ? false : starbox.hasClass('clickonce') ? 'once' : true,-->
-<!--                                            ghosting: starbox.hasClass('ghosting'),-->
-<!--                                            autoUpdateAverage: starbox.hasClass('autoupdate'),-->
-<!--                                            buttons: starbox.hasClass('smooth') ? false : starbox.attr('data-button-count') || 5,-->
-<!--                                            stars: starbox.attr('data-star-count') || 5-->
-<!--                                        }).bind('starbox-value-changed', function (event, value) {-->
-<!--                                            if (starbox.hasClass('random')) {-->
-<!--                                                var val = Math.random();-->
-<!--                                                starbox.next().text(' ' + val);-->
-<!--                                                return val;-->
-<!--                                            }-->
-<!--                                        })-->
-<!--                                    });-->
-<!--                                });-->
-<!--                            </script>-->
-<!--                            &lt;!&ndash;-//End-rate&#45;&#45;&ndash;&gt;-->
-<!--                            <div id="owl-demo" class="owl-carousel">-->
-<!--                                <div class="item" onclick="location.href='details.html';">-->
-<!--                                    <div class="product-grid  sproduct-grid">-->
-<!--                                        <div class="product-pic">-->
-<!--                                            <a href="#"><img src="images/product1.jpg" title="product-name"/></a>-->
-<!--                                            <p>-->
-<!--                                                <a href="#"><small>Nike</small> HYPERVENOM <small>Phantom</small> FG</a>-->
-<!--                                                <span>Men's Firm-Ground Football Boot</span>-->
-<!--                                            </p>-->
-<!--                                        </div>-->
-<!--                                        <div class="product-info">-->
-<!--                                            <div class="product-info-cust">-->
-<!--                                                <a href="#">Details</a>-->
-<!--                                            </div>-->
-<!--                                            <div class="product-info-price">-->
-<!--                                                <a href="#">&#163; 200</a>-->
-<!--                                            </div>-->
-<!--                                            <div class="clear"></div>-->
-<!--                                        </div>-->
-<!--                                        <div class="more-product-info">-->
-<!--                                            <span> </span>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="item" onclick="location.href='details.html';">-->
-<!--                                    <div class="product-grid  sproduct-grid">-->
-<!--                                        <div class="product-pic">-->
-<!--                                            <a href="#"><img src="images/product2.jpg" title="product-name"/></a>-->
-<!--                                            <p>-->
-<!--                                                <a href="#"><small>Nike</small> HYPERVENOM <small>Phantom</small> FG</a>-->
-<!--                                                <span>Men's Firm-Ground Football Boot</span>-->
-<!--                                            </p>-->
-<!--                                        </div>-->
-<!--                                        <div class="product-info">-->
-<!--                                            <div class="product-info-cust">-->
-<!--                                                <a href="#">Details</a>-->
-<!--                                            </div>-->
-<!--                                            <div class="product-info-price">-->
-<!--                                                <a href="#">&#163; 320</a>-->
-<!--                                            </div>-->
-<!--                                            <div class="clear"></div>-->
-<!--                                        </div>-->
-<!--                                        <div class="more-product-info">-->
-<!--                                            <span> </span>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="item" onclick="location.href='details.html';">-->
-<!--                                    <div class="product-grid  sproduct-grid">-->
-<!--                                        <div class="product-pic">-->
-<!--                                            <a href="#"><img src="images/product3.jpg" title="product-name"/></a>-->
-<!--                                            <p>-->
-<!--                                                <a href="#"><small>Nike</small> HYPERVENOM <small>Phantom</small> FG</a>-->
-<!--                                                <span>Men's Firm-Ground Football Boot</span>-->
-<!--                                            </p>-->
-<!--                                        </div>-->
-<!--                                        <div class="product-info">-->
-<!--                                            <div class="product-info-cust">-->
-<!--                                                <a href="#">Details</a>-->
-<!--                                            </div>-->
-<!--                                            <div class="product-info-price">-->
-<!--                                                <a href="#">&#163; 380</a>-->
-<!--                                            </div>-->
-<!--                                            <div class="clear"></div>-->
-<!--                                        </div>-->
-<!--                                        <div class="more-product-info">-->
-<!--                                            <span> </span>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="item" onclick="location.href='details.html';">-->
-<!--                                    <div class="product-grid  sproduct-grid">-->
-<!--                                        <div class="product-pic">-->
-<!--                                            <a href="#"><img src="images/product4.jpg" title="product-name"/></a>-->
-<!--                                            <p>-->
-<!--                                                <a href="#"><small>Nike</small> HYPERVENOM <small>Phantom</small> FG</a>-->
-<!--                                                <span>Men's Firm-Ground Football Boot</span>-->
-<!--                                            </p>-->
-<!--                                        </div>-->
-<!--                                        <div class="product-info">-->
-<!--                                            <div class="product-info-cust">-->
-<!--                                                <a href="#">Details</a>-->
-<!--                                            </div>-->
-<!--                                            <div class="product-info-price">-->
-<!--                                                <a href="#">&#163; 300</a>-->
-<!--                                            </div>-->
-<!--                                            <div class="clear"></div>-->
-<!--                                        </div>-->
-<!--                                        <div class="more-product-info">-->
-<!--                                            <span> </span>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="item" onclick="location.href='details.html';">-->
-<!--                                    <div class="product-grid  sproduct-grid">-->
-<!--                                        <div class="product-pic">-->
-<!--                                            <a href="#"><img src="images/product5.jpg" title="product-name"/></a>-->
-<!--                                            <p>-->
-<!--                                                <a href="#"><small>Nike</small> HYPERVENOM <small>Phantom</small> FG</a>-->
-<!--                                                <span>Men's Firm-Ground Football Boot</span>-->
-<!--                                            </p>-->
-<!--                                        </div>-->
-<!--                                        <div class="product-info">-->
-<!--                                            <div class="product-info-cust">-->
-<!--                                                <a href="#">Details</a>-->
-<!--                                            </div>-->
-<!--                                            <div class="product-info-price">-->
-<!--                                                <a href="#">&#163; 270</a>-->
-<!--                                            </div>-->
-<!--                                            <div class="clear"></div>-->
-<!--                                        </div>-->
-<!--                                        <div class="more-product-info">-->
-<!--                                            <span> </span>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            &lt;!&ndash;&#45;&#45;//End-img-cursual&#45;&#45;&ndash;&gt;-->
-<!--                        </div>-->
-<!--                        <div class="clear"></div>-->
-<!--                    </div>-->
+                    <!--                    <div class="similar-products">-->
+                    <!--                        <div class="similar-products-left">-->
+                    <!--                            <h3>SIMILAR PRODUCTS</h3>-->
+                    <!--                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor-->
+                    <!--                                incididunt ut labore et dolore magna aliqua.</p>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="similar-products-right">-->
+                    <!--                            &lt;!&ndash; start content_slider &ndash;&gt;-->
+                    <!--                            &lt;!&ndash;- start-rate&#45;&#45;&ndash;&gt;-->
+                    <!--                            <script src="js/jstarbox.js"></script>-->
+                    <!--                            <link rel="stylesheet" href="css/jstarbox.css" type="text/css" media="screen"-->
+                    <!--                                  charset="utf-8"/>-->
+                    <!--                            <script type="text/javascript">-->
+                    <!--                                jQuery(function () {-->
+                    <!--                                    jQuery('.starbox').each(function () {-->
+                    <!--                                        var starbox = jQuery(this);-->
+                    <!--                                        starbox.starbox({-->
+                    <!--                                            average: starbox.attr('data-start-value'),-->
+                    <!--                                            changeable: starbox.hasClass('unchangeable') ? false : starbox.hasClass('clickonce') ? 'once' : true,-->
+                    <!--                                            ghosting: starbox.hasClass('ghosting'),-->
+                    <!--                                            autoUpdateAverage: starbox.hasClass('autoupdate'),-->
+                    <!--                                            buttons: starbox.hasClass('smooth') ? false : starbox.attr('data-button-count') || 5,-->
+                    <!--                                            stars: starbox.attr('data-star-count') || 5-->
+                    <!--                                        }).bind('starbox-value-changed', function (event, value) {-->
+                    <!--                                            if (starbox.hasClass('random')) {-->
+                    <!--                                                var val = Math.random();-->
+                    <!--                                                starbox.next().text(' ' + val);-->
+                    <!--                                                return val;-->
+                    <!--                                            }-->
+                    <!--                                        })-->
+                    <!--                                    });-->
+                    <!--                                });-->
+                    <!--                            </script>-->
+                    <!--                            &lt;!&ndash;-//End-rate&#45;&#45;&ndash;&gt;-->
+                    <!--                            <div id="owl-demo" class="owl-carousel">-->
+                    <!--                                <div class="item" onclick="location.href='details.html';">-->
+                    <!--                                    <div class="product-grid  sproduct-grid">-->
+                    <!--                                        <div class="product-pic">-->
+                    <!--                                            <a href="#"><img src="images/product1.jpg" title="product-name"/></a>-->
+                    <!--                                            <p>-->
+                    <!--                                                <a href="#"><small>Nike</small> HYPERVENOM <small>Phantom</small> FG</a>-->
+                    <!--                                                <span>Men's Firm-Ground Football Boot</span>-->
+                    <!--                                            </p>-->
+                    <!--                                        </div>-->
+                    <!--                                        <div class="product-info">-->
+                    <!--                                            <div class="product-info-cust">-->
+                    <!--                                                <a href="#">Details</a>-->
+                    <!--                                            </div>-->
+                    <!--                                            <div class="product-info-price">-->
+                    <!--                                                <a href="#">&#163; 200</a>-->
+                    <!--                                            </div>-->
+                    <!--                                            <div class="clear"></div>-->
+                    <!--                                        </div>-->
+                    <!--                                        <div class="more-product-info">-->
+                    <!--                                            <span> </span>-->
+                    <!--                                        </div>-->
+                    <!--                                    </div>-->
+                    <!--                                </div>-->
+                    <!--                                <div class="item" onclick="location.href='details.html';">-->
+                    <!--                                    <div class="product-grid  sproduct-grid">-->
+                    <!--                                        <div class="product-pic">-->
+                    <!--                                            <a href="#"><img src="images/product2.jpg" title="product-name"/></a>-->
+                    <!--                                            <p>-->
+                    <!--                                                <a href="#"><small>Nike</small> HYPERVENOM <small>Phantom</small> FG</a>-->
+                    <!--                                                <span>Men's Firm-Ground Football Boot</span>-->
+                    <!--                                            </p>-->
+                    <!--                                        </div>-->
+                    <!--                                        <div class="product-info">-->
+                    <!--                                            <div class="product-info-cust">-->
+                    <!--                                                <a href="#">Details</a>-->
+                    <!--                                            </div>-->
+                    <!--                                            <div class="product-info-price">-->
+                    <!--                                                <a href="#">&#163; 320</a>-->
+                    <!--                                            </div>-->
+                    <!--                                            <div class="clear"></div>-->
+                    <!--                                        </div>-->
+                    <!--                                        <div class="more-product-info">-->
+                    <!--                                            <span> </span>-->
+                    <!--                                        </div>-->
+                    <!--                                    </div>-->
+                    <!--                                </div>-->
+                    <!--                                <div class="item" onclick="location.href='details.html';">-->
+                    <!--                                    <div class="product-grid  sproduct-grid">-->
+                    <!--                                        <div class="product-pic">-->
+                    <!--                                            <a href="#"><img src="images/product3.jpg" title="product-name"/></a>-->
+                    <!--                                            <p>-->
+                    <!--                                                <a href="#"><small>Nike</small> HYPERVENOM <small>Phantom</small> FG</a>-->
+                    <!--                                                <span>Men's Firm-Ground Football Boot</span>-->
+                    <!--                                            </p>-->
+                    <!--                                        </div>-->
+                    <!--                                        <div class="product-info">-->
+                    <!--                                            <div class="product-info-cust">-->
+                    <!--                                                <a href="#">Details</a>-->
+                    <!--                                            </div>-->
+                    <!--                                            <div class="product-info-price">-->
+                    <!--                                                <a href="#">&#163; 380</a>-->
+                    <!--                                            </div>-->
+                    <!--                                            <div class="clear"></div>-->
+                    <!--                                        </div>-->
+                    <!--                                        <div class="more-product-info">-->
+                    <!--                                            <span> </span>-->
+                    <!--                                        </div>-->
+                    <!--                                    </div>-->
+                    <!--                                </div>-->
+                    <!--                                <div class="item" onclick="location.href='details.html';">-->
+                    <!--                                    <div class="product-grid  sproduct-grid">-->
+                    <!--                                        <div class="product-pic">-->
+                    <!--                                            <a href="#"><img src="images/product4.jpg" title="product-name"/></a>-->
+                    <!--                                            <p>-->
+                    <!--                                                <a href="#"><small>Nike</small> HYPERVENOM <small>Phantom</small> FG</a>-->
+                    <!--                                                <span>Men's Firm-Ground Football Boot</span>-->
+                    <!--                                            </p>-->
+                    <!--                                        </div>-->
+                    <!--                                        <div class="product-info">-->
+                    <!--                                            <div class="product-info-cust">-->
+                    <!--                                                <a href="#">Details</a>-->
+                    <!--                                            </div>-->
+                    <!--                                            <div class="product-info-price">-->
+                    <!--                                                <a href="#">&#163; 300</a>-->
+                    <!--                                            </div>-->
+                    <!--                                            <div class="clear"></div>-->
+                    <!--                                        </div>-->
+                    <!--                                        <div class="more-product-info">-->
+                    <!--                                            <span> </span>-->
+                    <!--                                        </div>-->
+                    <!--                                    </div>-->
+                    <!--                                </div>-->
+                    <!--                                <div class="item" onclick="location.href='details.html';">-->
+                    <!--                                    <div class="product-grid  sproduct-grid">-->
+                    <!--                                        <div class="product-pic">-->
+                    <!--                                            <a href="#"><img src="images/product5.jpg" title="product-name"/></a>-->
+                    <!--                                            <p>-->
+                    <!--                                                <a href="#"><small>Nike</small> HYPERVENOM <small>Phantom</small> FG</a>-->
+                    <!--                                                <span>Men's Firm-Ground Football Boot</span>-->
+                    <!--                                            </p>-->
+                    <!--                                        </div>-->
+                    <!--                                        <div class="product-info">-->
+                    <!--                                            <div class="product-info-cust">-->
+                    <!--                                                <a href="#">Details</a>-->
+                    <!--                                            </div>-->
+                    <!--                                            <div class="product-info-price">-->
+                    <!--                                                <a href="#">&#163; 270</a>-->
+                    <!--                                            </div>-->
+                    <!--                                            <div class="clear"></div>-->
+                    <!--                                        </div>-->
+                    <!--                                        <div class="more-product-info">-->
+                    <!--                                            <span> </span>-->
+                    <!--                                        </div>-->
+                    <!--                                    </div>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+                    <!--                            &lt;!&ndash;&#45;&#45;//End-img-cursual&#45;&#45;&ndash;&gt;-->
+                    <!--                        </div>-->
+                    <!--                        <div class="clear"></div>-->
+                    <!--                    </div>-->
                     <!--- //End-similar-products--->
                 </div>
             </div>

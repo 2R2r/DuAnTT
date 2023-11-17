@@ -4,6 +4,7 @@ import com.duan.duantt.Entity.GioHang;
 import com.duan.duantt.Entity.KhuyenMai;
 import com.duan.duantt.Entity.NguoiDung;
 import com.duan.duantt.Service.*;
+import com.duan.duantt.security.AuthController;
 import com.fasterxml.jackson.databind.JsonNode;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ import java.util.Optional;
 import java.util.UUID;
 @RestController
 public class OrrderRestController {
+
+    @Autowired
+    private AuthController authController;
 
     @Autowired
     private GioHangService gioHangService;
@@ -36,8 +40,8 @@ public class OrrderRestController {
     @Transactional
     @PostMapping("/rest/order/add")
     public ResponseEntity<?> create(@RequestBody JsonNode orderData){
-        UUID uuid = UUID.fromString("1127166f-2172-44ad-9606-8314a9919fd9");
-        Optional<NguoiDung> nguoiDung = nguoiDungService.findById(uuid);
+        Optional<NguoiDung> nguoiDung = nguoiDungService.findByTaiKhoan(authController.getAuthentication().getName());
+
 
         if (nguoiDung.isPresent()) {
             GioHang gioHang = gioHangService.findByNguoiDungId(nguoiDung.get().getId());

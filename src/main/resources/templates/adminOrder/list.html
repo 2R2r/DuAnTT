@@ -2,8 +2,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
 >
 
-
-<!-- index.html  21 Nov 2019 03:44:50 GMT -->
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
@@ -246,7 +244,6 @@
             </aside>
 
 
-
         </div>
         <!-- Main Content -->
         <div class="main-content">
@@ -254,49 +251,8 @@
                 <div class="col-12 col-md-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Màu sắc</h4>
+                            <h4>Kích thước</h4>
                         </div>
-                        <form action="/admin/nsx/add" method="post" th:object="${nsx1}"
-                              onsubmit="return  confirm('Bạn có thêm không?')">
-                            <div class="card-body">
-                                <!--                                <div class="form-group">-->
-                                <!--                                    <label>Mã màu sắc</label>-->
-                                <!--                                    <div class="input-group colorpickerinput">-->
-                                <!--                                        <input type="text" class="form-control" placeholder="Nhập mã màu sắc"-->
-                                <!--                                               th:field="*{code}">-->
-                                <!--                                        <span th:if="${#fields.hasErrors('code')}" style="color: red; font-size: 13px"-->
-                                <!--                                              th:errors="*{code}"></span>-->
-                                <!--                                    </div>-->
-                                <!--                                </div>-->
-                                <div class="form-group">
-                                    <label>Tên NSX</label>
-                                    <input type="text" class="form-control" placeholder="Nhập tên NSX"
-                                           th:field="*{ten}">
-
-                                </div>
-                                <div class="form-group">
-                                    <label class="d-block">Trạng thái</label>
-                                    <div class="form-check">
-                                        <input type="radio" name="exampleRadios" th:field="*{trangThai}" value="true"
-                                               checked="checked">
-                                        <label class="form-check-label">
-                                            Hoạt động
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input type="radio" name="exampleRadios" th:field="*{trangThai}" value="false">
-                                        <label class="form-check-label">
-                                            Không hoạt động
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <a th:href="@{/admin/nsx/add}">
-                                        <button class="btn btn-primary mr-1" type="submit">Thêm</button>
-                                    </a>
-                                </div>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -305,31 +261,45 @@
                     <div class="card">
                         <div class="card-body p-0">
                             <div class="table-responsive">
-                                <table class="table table-striped">
+                                <table class="table">
                                     <tr>
-
-                                        <th>Id</th>
-                                        <th>NSX</th>
-                                        <th>Trạng thái</th>
-                                        <th>Hành động</th>
+                                        <th>#</th>
+                                        <th>Ngày Tạo</th>
+                                        <th>Tổng Tiền Thanh Toán</th>
+                                        <th>Số Điện Thoại</th>
+                                        <th>Địa Chỉ</th>
+                                        <th>Trạng Thái</th>
+                                        <th>Chi tiết</th>
                                     </tr>
-                                    <tr th:each="list:${list}">
-
-                                        <td th:text="*{list.id}"></td>
-                                        <td th:text="*{list.ten}"></td>
-                                        <td th:text="${list.trangThai  ? 'Hoạt động' : 'Không hoạt động'}"></td>
+                                    <tr th:each="order, count : ${listOrder}">
+                                        <td th:text="${count.index + 1}"></td>
+                                        <td th:text="${#dates.format(order.ngayTao, 'dd/MM/yyyy')}"></td>
+                                        <td th:text="${#numbers.formatDecimal(order.tongTienTT, 0, 'COMMA', 2, 'POINT')} + ' VND'"></td>
+                                        <td th:text="${order.sdt}"></td>
+                                        <td th:text="${order.diaChi}"></td>
                                         <td>
-                                            <a th:href="@{'/admin/nsx/delete/'+${list.id}}">
-                                                <button type="button" class="btn btn-danger"
-                                                        onsubmit="return  confirm('Bạn có xoá không?')">
-                                                    Xoá
-                                                </button>
-                                            </a>
-                                            <a th:href="@{'/admin/nsx/view-update/'+${list.id}}">
-                                                <button type="button" class="btn btn-success">
-                                                    Cập nhật
-                                                </button>
-                                            </a>
+        <span th:switch="${order.trangThai}">
+            <span th:case="0">Đã hủy</span>
+            <span th:case="1">Đã xác nhận</span>
+            <span th:case="2">Đang chờ xác nhận</span>
+            <span th:case="*">Không rõ</span>
+        </span>
+                                        </td>
+                                        <td>
+                                            <a th:href="@{/order/detail/{id}(id=${order.id})}" class="btn btn-primary">Xem chi tiết</a>
+                                        </td>
+                                        <td>
+                                            <!-- Nút đã hủy -->
+                                            <form th:if="${order.trangThai != 0}" th:action="@{'/admin/order/cancel/' + ${order.id}}" method="post">
+                                                <input type="submit" value="Hủy" class="btn btn-danger">
+                                            </form>
+                                        </td>
+                                        <td>
+
+                                            <!-- Nút đã xác nhận -->
+                                            <form th:if="${order.trangThai != 1}" th:action="@{'/admin/order/confirm/' + ${order.id}}" method="post">
+                                                <input type="submit" value="Xác nhận" class="btn btn-success">
+                                            </form>
                                         </td>
                                     </tr>
                                 </table>
@@ -452,10 +422,5 @@
                 <script th:src="@{/assets/js/scripts.js}"></script>
                 <!-- Custom JS File -->
                 <script th:src="@{/assets/js/custom.js}"></script>
-
-
 </body>
-
-
-<!-- index.html  21 Nov 2019 03:47:04 GMT -->
 </html>

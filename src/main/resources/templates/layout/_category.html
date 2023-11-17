@@ -6,8 +6,8 @@
 </div>
 
        <div class="body">
-           <a th:href="@{/product/list}" class="list-group-item">Tất cả</a>
-           <a th:each="c : ${cates}" th:href="@{|/product/list?cid=${c.id}|}" class="list-group-item" th:text="${c.ten}"></a>
+           <a th:href="@{/home/product}" class="list-group-item">Tất cả</a>
+           <a th:each="c : ${cates}" th:href="@{|/home/product?cid=${c.id}|}" class="list-group-item" th:text="${c.ten}"></a>
        </div>
     </div>
 </div>
