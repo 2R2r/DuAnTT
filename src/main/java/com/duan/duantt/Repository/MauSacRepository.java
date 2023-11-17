@@ -11,5 +11,5 @@ import java.util.UUID;
 
 @Repository
 public interface MauSacRepository extends JpaRepository<MauSac,UUID > {
-
+    MauSac getMauSacById(UUID id);
 }

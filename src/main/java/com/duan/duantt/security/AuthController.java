@@ -3,17 +3,17 @@ package com.duan.duantt.security;
 import com.duan.duantt.Repository.NguoiDungRepository;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.Optional;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class AuthController {
@@ -26,6 +26,19 @@ public class AuthController {
 
     @Autowired
     private NguoiDungRepository accountRepository;
+    @ResponseBody
+    @GetMapping("/api/user/role")
+    public List<String> getUserRoles(Authentication authentication) {
+        if (authentication != null && !"anonymousUser".equals(authentication.getPrincipal())){
+            return authentication.getAuthorities()
+                    .stream()
+                    .map(GrantedAuthority::getAuthority)
+                    .collect(Collectors.toList());
+        }
+        return null;
+
+        }
+
 
 
     @GetMapping("/auth/login/form")

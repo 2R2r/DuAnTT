@@ -2,6 +2,7 @@ package com.duan.duantt.Entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;
 
@@ -26,7 +27,7 @@ public class BaiViet {
     private String hinhAnh;
 
     @Column(name = "NgayTao")
-    private Date ngayTao;
+    private LocalDate ngayTao;
 
     @ManyToOne
     @JoinColumn(name = "IdNguoiDung")

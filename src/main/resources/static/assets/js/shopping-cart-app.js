@@ -124,7 +124,28 @@ app.controller("shopping-cart-ctrl", function ($scope, $http) {
     $scope.tongTien = 0;
     $scope.KM = null;
 
+    // Khởi tạo biến để điều khiển hiển thị link Admin
+    $scope.showAdminLink = false;
 
+    // Hàm để kiểm tra vai trò và hiển thị link nếu là ADMIN hoặc STAFF
+    function checkUserRole(roles) {
+        if (roles.includes('ADMIN') || roles.includes('STAFF')) {
+            $scope.showAdminLink = true;
+        }
+    }
+
+    // Gọi API để lấy vai trò của người dùng
+    function getAuthor() {
+    $http.get('/api/user/role')
+        .then(function(response) {
+            var userRoles = response.data;
+            checkUserRole(userRoles);
+        })
+        .catch(function(error) {
+            console.error('Error fetching user roles:', error);
+        });
+    }
+    getAuthor();
     function reloadCartItems() {
         $http.get('/rest/chitietgiohang')
             .then(function (response) {

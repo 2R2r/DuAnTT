@@ -31,7 +31,7 @@ public class AdminOrderController {
     private NguoiDungService nguoiDungService;
 
 
-    @GetMapping("/order/list")
+    @GetMapping("/order")
     public String list(Model model){
 
         if (authController.getAuthentication() != null){

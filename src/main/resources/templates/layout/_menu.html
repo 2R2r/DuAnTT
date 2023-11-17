@@ -33,7 +33,9 @@
             <div style="display: flex" class="top-header-left">
                 <div class="top-header-left">
                     <a href="/home/product">Home</a>
+                    <a ng-show="showAdminLink" href="/admin">  Admin</a>
                 </div>
+
 
                 <div class="clear"></div>
             </div>
@@ -52,6 +54,12 @@
             </div>
             <div xmlns:th="http://www.thymeleaf.org" class="top-header-right">
                 <ul>
+
+
+                    <li>
+                        <a  href="/bai-viet/hien-thi">TIN TỨC SẢN PHẨM  |  </a>
+
+                    </li>
                     <li th:if="${ten != null and ten ne 'anonymousUser'}">
                         <!-- Display if 'ten' is not null and not ANONYMOUSUSER -->
                         <a href="/order/list" style="color: #FFF; font-size: 0.7em; text-transform: uppercase;" th:text="${ten}"></a> |
@@ -59,7 +67,7 @@
                     </li>
                     <li th:unless="${ten != null and ten ne 'anonymousUser'}">
                         <!-- Display if 'ten' is null or ANONYMOUSUSER -->
-                        <a href="/auth/login/form">Đăng nhập</a> | <a href="/auth/register/form">Đăng ký</a>
+                        <a href="/auth/login/form"> Đăng nhập</a> | <a href="/auth/register/form">Đăng ký</a>
                     </li>
                     <div>
                         <div style="margin-left: 20px;" class="list-group">
